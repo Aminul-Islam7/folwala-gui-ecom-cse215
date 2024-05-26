@@ -23,13 +23,11 @@ import java.util.ArrayList;
 import javax.swing.Action;
 
 import com.group8.folwala.models.Product;
+import com.group8.folwala.services.ProductService;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 
-public class HomeController {
-
-  // @FXML
-  // private ListView<Product> productList;
+public class ProductController {
 
   @FXML
   private FlowPane productFlowPane;
@@ -52,7 +50,7 @@ public class HomeController {
   // }
 
   private void loadProducts() {
-    ArrayList<Product> products = Product.getAllProducts();
+    ArrayList<Product> products = ProductService.getAllProducts();
 
     for (Product product : products) {
       VBox productBox = createProductBox(product);
@@ -79,6 +77,7 @@ public class HomeController {
     TextField quantityField = new TextField("0");
 
     quantityField.minHeightProperty().set(40);
+    quantityField.alignmentProperty().set(javafx.geometry.Pos.CENTER);
 
     nameLabel.getStyleClass().add("name");
     unitLabel.getStyleClass().add("unit");

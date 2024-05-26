@@ -204,6 +204,10 @@
 	-fx-font-size: 18;
 	-fx-font-weight: bold;
 }
+/* 
+.product-box .text-field {
+	-fx-alignment: center;
+} */
 
 .product-box .add-to-cart-btn {
 	-fx-background-color: #22423d;
