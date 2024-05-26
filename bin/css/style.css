@@ -15,7 +15,7 @@
 
 .button {
 	-fx-background-color: #fbc108;
-	-fx-text-fill: #283f3b;
+	-fx-text-fill: #22423d;
 	-fx-font-size: 16;
 	-fx-background-radius: 5;
 	-fx-padding: 7 15;
@@ -27,7 +27,7 @@
 }
 
 .heading {
-	-fx-text-fill: #283f3b;
+	-fx-text-fill: #22423d;
 	-fx-font-size: 20;
 	-fx-font-weight: bold;
 }
@@ -53,7 +53,7 @@
 
 . .balance-btn {
 	-fx-background-color: white;
-	-fx-text-fill: #283f3b;
+	-fx-text-fill: #22423d;
 }
 
 .balance-btn:hover {
@@ -62,11 +62,11 @@
 
 .menu-btn {
 	-fx-background-color: transparent;
-	-fx-text-fill: #283f3b;
+	-fx-text-fill: #22423d;
 }
 
 .menu-btn .glyph-icon {
-	-fx-fill: #283f3b;
+	-fx-fill: #22423d;
 	-fx-glyph-size: 30;
 	-fx-size: 30;
 }
@@ -86,7 +86,7 @@
 }
 
 .account-btn {
-	-fx-background-color: #283f3b;
+	-fx-background-color: #22423d;
 	-fx-text-fill: white;
 	-fx-padding: 5 5;
 }
@@ -96,11 +96,11 @@
 }
 
 .account-btn:hover {
-	-fx-background-color: #283f3b;
+	-fx-background-color: #22423d;
 }
 
 .sign-out-btn {
-	-fx-background-color: #283f3b;
+	-fx-background-color: #22423d;
 	-fx-pref-height: 60;
 	-fx-padding: 0 17;
 }
@@ -120,13 +120,13 @@
 }
 
 .header {
-	-fx-background-color: #283f3b;
+	-fx-background-color: #22423d;
 	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 15, 0, 0, 5);
 }
 
 .nav-btn {
 	-fx-background-color: #fbc108;
-	-fx-text-fill: #283f3b;
+	-fx-text-fill: #22423d;
 	-fx-font-size: 16;
 	-fx-background-radius: 100;
 	-fx-padding: 7 10;
@@ -137,7 +137,7 @@
 }
 
 .nav-btn .glyph-icon {
-	-fx-fill: #283f3b;
+	-fx-fill: #22423d;
 }
 
 .scene-label {
@@ -172,7 +172,7 @@
 }
 
 .thumb {
-	-fx-background-color: #283f3b;
+	-fx-background-color: #22423d;
 	-fx-background-radius: 10;
 	-fx-padding: 15;
 	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 30, 0, 3, 2);
@@ -190,7 +190,7 @@
 }
 
 .product-box .name {
-	-fx-text-fill: #283f3b;
+	-fx-text-fill: #22423d;
 	-fx-font-size: 16;
 }
 
@@ -200,8 +200,15 @@
 }
 
 .product-box .price {
-	-fx-text-fill: #283f3b;
+	-fx-text-fill: #22423d;
 	-fx-font-size: 18;
+	-fx-font-weight: bold;
+}
+
+.product-box .add-to-cart-btn {
+	-fx-background-color: #22423d;
+	-fx-text-fill: #fbc108;
+	-fx-font-size: 16;
 	-fx-font-weight: bold;
 }
 

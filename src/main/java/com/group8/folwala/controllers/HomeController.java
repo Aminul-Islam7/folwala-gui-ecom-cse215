@@ -105,6 +105,7 @@ public class HomeController {
     subtractButton.setMinHeight(40);
 
     addToCartButton.prefWidthProperty().set(200);
+    addToCartButton.getStyleClass().add("add-to-cart-btn");
 
     quantityBox.getChildren().addAll(subtractButton, quantityField, addButton);
 
