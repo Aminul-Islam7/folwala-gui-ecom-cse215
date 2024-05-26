@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group8.folwala.controllers.HomeController">
+   <children>
+      <ListView fx:id="productList" layoutX="108.0" layoutY="114.0" prefHeight="346.0" prefWidth="606.0" styleClass="form" />
+   </children>
+</AnchorPane>
