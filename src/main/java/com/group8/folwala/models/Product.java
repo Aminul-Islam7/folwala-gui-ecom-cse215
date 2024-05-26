@@ -17,8 +17,17 @@ public class Product {
     private String category;
     private String unit;
     private boolean isDeleted;
+    private String image;
 
-    public Product(int productID, String name, double price, int stockQuantity, String category, String unit) {
+    public Product(
+            int productID,
+            String name,
+            double price,
+            int stockQuantity,
+            String category,
+            String unit,
+            boolean isDeleted,
+            String image) {
         this.productID = productID;
         this.name = name;
         this.price = price;
@@ -26,6 +35,7 @@ public class Product {
         this.category = category;
         this.unit = unit;
         this.isDeleted = false;
+        this.image = image;
     }
 
     public String getName() {
@@ -54,6 +64,10 @@ public class Product {
 
     public boolean isDeleted() {
         return isDeleted;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public void setName(String name) {
@@ -102,7 +116,7 @@ public class Product {
                 if (data[4].equals(category)) {
                     Product product = new Product(Integer.parseInt(
                             data[0]), data[1], Double.parseDouble(data[2]), Integer.parseInt(data[3]),
-                            data[4], data[5]);
+                            data[4], data[5], Boolean.parseBoolean(data[6]), data[7]);
                     products.add(product);
                 }
             }
@@ -126,7 +140,7 @@ public class Product {
                 String[] data = line.split(":");
                 Product product = new Product(Integer.parseInt(
                         data[0]), data[1], Double.parseDouble(data[2]), Integer.parseInt(data[3]),
-                        data[4], data[5]);
+                        data[4], data[5], Boolean.parseBoolean(data[6]), data[7]);
                 products.add(product);
             }
             bufferedReader.close();
@@ -144,7 +158,7 @@ public class Product {
             FileWriter fileWriter = new FileWriter(filePath, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(productID + ":" + name + ":" + price + ":" + stockQuantity + ":" + category + ":"
-                    + unit + ":" + false);
+                    + unit + ":" + false + ":" + image);
             bufferedWriter.newLine();
             bufferedWriter.close();
         } catch (IOException e) {

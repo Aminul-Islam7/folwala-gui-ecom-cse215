@@ -60,7 +60,7 @@ public class SceneController {
       AnchorPane view = loader.load();
       contentPane.getChildren().setAll(view);
       mainLayoutController.setSceneLabel(sceneLabel);
-      mainLayoutController.updateNavButtonsVisibility();
+      // mainLayoutController.updateNavButtonsVisibility();
     } catch (IOException e) {
       e.printStackTrace();
     }

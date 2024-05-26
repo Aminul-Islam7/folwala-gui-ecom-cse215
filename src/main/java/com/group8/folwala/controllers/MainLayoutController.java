@@ -22,7 +22,7 @@ public class MainLayoutController {
     SceneController.setContentPane(contentPane);
     SceneController.setMainLayoutController(this);
     SceneController.setScene("Home.fxml", "Welcome");
-    updateNavButtonsVisibility();
+    // updateNavButtonsVisibility();
   }
 
   public void setSceneLabel(String label) {

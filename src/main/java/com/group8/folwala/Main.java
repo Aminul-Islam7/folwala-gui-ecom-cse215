@@ -25,7 +25,7 @@ public class Main extends Application {
         Image icon = new Image("/images/tempLogo.png");
         primaryStage.getIcons().add(icon);
 
-        primaryStage.setTitle("Folwala - Fruits Store");
+        primaryStage.setTitle("Folwala - Buy fresh fruits and vegetables");
 
         primaryStage.setResizable(false);
 

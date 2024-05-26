@@ -1,5 +1,5 @@
-1:Apple:6.99:100:Fleshy Fruits:500 g:false
-2:Orange:3.99:100:Fleshy Fruits:250 g:false
-3:Banana:1.99:100:Fleshy Fruits:100 g:false
-4:Grapes:5.99:100:Fleshy Fruits:500 g:false
-5:Strawberry:10.99:100:Fleshy Fruits:500 g:false
+1:Apple:6.99:100:Fleshy Fruits:500 g:false:malta.jpg
+2:Orange:3.99:100:Fleshy Fruits:250 g:false:malta.jpg
+3:Banana:1.99:100:Fleshy Fruits:100 g:false:malta.jpg
+4:Grapes:5.99:100:Fleshy Fruits:500 g:false:malta.jpg
+5:Strawberry:10.99:100:Fleshy Fruits:500 g:false:malta.jpg
