@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="550.0" styleClass="auth-bg" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group8.folwala.controllers.AuthenticationController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="163.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempLogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="176.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/folwala_text_225x71.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="nameField" layoutX="125.0" layoutY="340.0" onAction="#handleRegister" prefWidth="300.0" promptText="Name" />
+      <TextField fx:id="phoneField" layoutX="126.0" layoutY="384.0" onAction="#handleRegister" prefWidth="300.0" promptText="Phone number" />
+      <PasswordField fx:id="passwordField" layoutX="126.0" layoutY="428.0" onAction="#handleRegister" prefWidth="300.0" promptText="Password" />
+      <TextField fx:id="addressField" layoutX="126.0" layoutY="472.0" onAction="#handleRegister" prefWidth="300.0" promptText="Address" />
+      <Button fx:id="loginButton" layoutX="125.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleRegister" prefWidth="300.0" text="Register" />
+      <Label layoutX="149.0" layoutY="573.0" styleClass="prompt" text="Already have an account?" textAlignment="CENTER" />
+      <Button fx:id="loginPromptButton" layoutX="300.0" layoutY="566.0" mnemonicParsing="false" onAction="#switchToLoginScene" styleClass="prompt-button" text="Login here!" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="106.0" layoutY="600.0" prefHeight="20.0" prefWidth="338.0" styleClass="error-message-light" textAlignment="CENTER" />
+      <CheckBox fx:id="isAdminCheckbox" layoutX="126.0" layoutY="305.0" mnemonicParsing="false" onAction="#showAdminPasswordField" text="Register as admin" />
+      <PasswordField fx:id="adminPasswordField" layoutX="274.0" layoutY="296.0" onAction="#handleRegister" prefHeight="39.0" prefWidth="152.0" promptText="Admin Password" />
+   </children>
+</AnchorPane>

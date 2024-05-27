@@ -1,14 +1,22 @@
 package com.group8.folwala.controllers;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
+import com.group8.folwala.services.UserService;
 
 public class SceneController {
+  private static Stage authenticationStage;
+  private static Stage mainStage;
+  private static Stage currentStage;
 
   private static AnchorPane contentPane;
   public static ArrayList<String> viewList = new ArrayList<>();
@@ -16,6 +24,10 @@ public class SceneController {
   private static HashMap<String, String> sceneLabels = new HashMap<>();
 
   private static MainLayoutController mainLayoutController;
+
+  public static Stage getStage() {
+    return currentStage;
+  }
 
   public static void setContentPane(AnchorPane contentPane) {
     SceneController.contentPane = contentPane;
@@ -60,9 +72,78 @@ public class SceneController {
       AnchorPane view = loader.load();
       contentPane.getChildren().setAll(view);
       mainLayoutController.setSceneLabel(sceneLabel);
-      // mainLayoutController.updateNavButtonsVisibility();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
+
+  public static void setStages() {
+    authenticationStage = new Stage();
+    mainStage = new Stage();
+
+    try {
+      Parent authenticationRoot = FXMLLoader.load(SceneController.class.getResource("/fxml/Login.fxml"));
+      Scene authenticationScene = new Scene(authenticationRoot);
+
+      String css = SceneController.class.getResource("/css/style.css").toExternalForm();
+      authenticationScene.getStylesheets().add(css);
+
+      Image icon = new Image(SceneController.class.getResource("/images/tempLogo.png").toExternalForm());
+      authenticationStage.getIcons().add(icon);
+
+      authenticationStage.setTitle("Folwala - Buy fresh fruits and vegetables");
+
+      authenticationStage.setResizable(false);
+
+      authenticationStage.setScene(authenticationScene);
+
+      Parent mainRoot = FXMLLoader.load(SceneController.class.getResource("/fxml/MainLayout.fxml"));
+      Scene mainScene = new Scene(mainRoot);
+
+      mainScene.getStylesheets().add(css);
+
+      mainStage.getIcons().add(icon);
+
+      mainStage.setTitle("Folwala - Buy fresh fruits and vegetables");
+
+      mainStage.setResizable(false);
+
+      mainStage.setScene(mainScene);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void showAuthenticationStage() {
+    if (mainStage.isShowing()) {
+      mainStage.close();
+    }
+    currentStage = authenticationStage;
+    authenticationStage.show();
+  }
+
+  public static void showMainStage() {
+    if (authenticationStage.isShowing()) {
+      authenticationStage.close();
+    }
+
+    UserService userService = new UserService();
+    if (userService.getCurrentUser().isAdmin()) {
+
+    }
+
+    currentStage = mainStage;
+    mainStage.show();
+  }
+
+  public static void switchToScene(String string) {
+    try {
+      Scene scene = new Scene(FXMLLoader.load(SceneController.class.getResource("/fxml/" + string)));
+      currentStage.setScene(scene);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 }

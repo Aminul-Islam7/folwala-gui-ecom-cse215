@@ -39,4 +39,15 @@ public class User {
         return this.password.equals(password);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", isAdmin=" + isAdmin +
+                '}';
+    }
+
 }

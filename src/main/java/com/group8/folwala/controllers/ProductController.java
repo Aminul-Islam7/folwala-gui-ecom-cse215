@@ -1,26 +1,14 @@
 package com.group8.folwala.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.swing.Action;
 
 import com.group8.folwala.models.Product;
 import com.group8.folwala.services.ProductService;
@@ -61,14 +49,14 @@ public class ProductController {
   private VBox createProductBox(Product product) {
     VBox productBox = new VBox();
     productBox.setAlignment(javafx.geometry.Pos.CENTER);
-    productBox.setPrefWidth(220);
+    productBox.setPrefWidth(235);
     productBox.setPrefHeight(330);
     productBox.setSpacing(1);
     productBox.getStyleClass().add("product-box");
 
     ImageView imageView = new ImageView("/images/products/" + product.getImage());
-    imageView.setFitWidth(150);
-    imageView.setFitHeight(150);
+    imageView.setFitWidth(170);
+    imageView.setFitHeight(170);
     imageView.preserveRatioProperty().set(true);
 
     Label nameLabel = new Label(product.getName());
@@ -103,7 +91,7 @@ public class ProductController {
     subtractButton.setMinWidth(50);
     subtractButton.setMinHeight(40);
 
-    addToCartButton.prefWidthProperty().set(200);
+    addToCartButton.prefWidthProperty().set(250);
     addToCartButton.getStyleClass().add("add-to-cart-btn");
 
     quantityBox.getChildren().addAll(subtractButton, quantityField, addButton);

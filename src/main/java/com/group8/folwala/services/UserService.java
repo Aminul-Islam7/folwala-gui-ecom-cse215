@@ -2,9 +2,10 @@ package com.group8.folwala.services;
 
 import com.group8.folwala.models.User;
 
+import javafx.scene.Scene;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserService {
   private ArrayList<User> users;

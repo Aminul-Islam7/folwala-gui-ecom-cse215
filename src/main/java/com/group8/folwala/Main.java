@@ -2,35 +2,27 @@ package com.group8.folwala;
 
 import java.io.IOException;
 
-import com.group8.folwala.models.Product;
+import com.group8.folwala.controllers.SceneController;
+import com.group8.folwala.models.User;
+import com.group8.folwala.services.UserService;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    public static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainLayout.fxml"));
-        Scene scene = new Scene(root);
+        SceneController.setStages();
+        UserService userService = new UserService();
+        User currentUser = userService.getCurrentUser();
+        if (currentUser != null)
+            SceneController.showMainStage();
+        else
+            SceneController.showAuthenticationStage();
 
-        String css = this.getClass().getResource("/css/style.css").toExternalForm();
-        scene.getStylesheets().add(css);
-
-        Image icon = new Image("/images/tempLogo.png");
-        primaryStage.getIcons().add(icon);
-
-        primaryStage.setTitle("Folwala - Buy fresh fruits and vegetables");
-
-        primaryStage.setResizable(false);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     public static void main(String[] args) {

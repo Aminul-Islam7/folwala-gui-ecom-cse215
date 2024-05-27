@@ -1,5 +1,7 @@
 package com.group8.folwala.controllers;
 
+import com.group8.folwala.services.UserService;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 public class MainLayoutController {
 
   @FXML
-  private AnchorPane contentPane;
+  private AnchorPane contentPane, adminPane;
 
   @FXML
   private Button backButton, forwardButton;
@@ -21,8 +23,14 @@ public class MainLayoutController {
   public void initialize() {
     SceneController.setContentPane(contentPane);
     SceneController.setMainLayoutController(this);
-    SceneController.setScene("Home.fxml", "Welcome");
-    // updateNavButtonsVisibility();
+    AuthenticationController.setMainLayoutController(this);
+
+    UserService userService = new UserService();
+
+    if (userService.getCurrentUser() != null) {
+      adminPane.setVisible(userService.getCurrentUser().isAdmin());
+      SceneController.setScene("Home.fxml", ("Welcome, " + userService.getCurrentUser().getName()));
+    }
   }
 
   public void setSceneLabel(String label) {
@@ -41,4 +49,11 @@ public class MainLayoutController {
     backButton.setVisible(SceneController.viewList.size() > 1);
     forwardButton.setVisible(SceneController.visitedViewList.size() > 0);
   }
+
+  public void logoutUser() {
+    UserService userService = new UserService();
+    userService.logoutUser();
+    SceneController.showAuthenticationStage();
+  }
+
 }
