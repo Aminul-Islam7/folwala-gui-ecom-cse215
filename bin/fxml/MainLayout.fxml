@@ -60,7 +60,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" layoutX="29.0" layoutY="23.0">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="menu-btn" text="Home">
+                        <Button mnemonicParsing="false" onAction="#goToHome" styleClass="menu-btn" text="Home">
                            <graphic>
                               <FontAwesomeIcon glyphName="HOME" size="30" />
                            </graphic>
@@ -95,14 +95,15 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" styleClass="menu-btn" text="Fleshy Fruits" />
-                        <Button mnemonicParsing="false" styleClass="menu-btn" text="Dry Fruits" />
-                        <Button mnemonicParsing="false" styleClass="menu-btn" text="Fruit Seeds" />
-                        <Button mnemonicParsing="false" styleClass="menu-btn" text="Fruit Juice" />
-                        <Button mnemonicParsing="false" onAction="#logoutUser" styleClass="menu-btn" text="Fresh Vegetables" />
+                        <Button mnemonicParsing="false" onAction="#loadAllProducts" styleClass="menu-btn" text="All Items" />
+                        <Button mnemonicParsing="false" onAction="#loadFleshyFruits" styleClass="menu-btn" text="Fleshy Fruits" />
+                        <Button mnemonicParsing="false" onAction="#loadDryFruits" styleClass="menu-btn" text="Dry Fruits" />
+                        <Button mnemonicParsing="false" onAction="#loadFruitSeeds" styleClass="menu-btn" text="Fruit Seeds" />
+                        <Button mnemonicParsing="false" onAction="#loadFruitJuice" styleClass="menu-btn" text="Fruit Juice" />
+                        <Button mnemonicParsing="false" onAction="#loadFreshVegetables" styleClass="menu-btn" text="Fresh Vegetables" />
                      </children>
                   </VBox>
-                  <AnchorPane fx:id="adminPane" layoutX="23.0" layoutY="296.0" prefHeight="298.0" prefWidth="212.0" styleClass="admin-pane">
+                  <AnchorPane fx:id="adminPane" layoutX="23.0" layoutY="296.0" prefHeight="298.0" prefWidth="212.0" styleClass="admin-pane" visible="false">
                      <children>
                         <VBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="14.0">
                            <children>

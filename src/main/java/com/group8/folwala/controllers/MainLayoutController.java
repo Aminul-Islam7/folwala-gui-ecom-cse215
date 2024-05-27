@@ -19,6 +19,8 @@ public class MainLayoutController {
   @FXML
   private Label sceneLabel;
 
+  private static ProductController productController;
+
   @FXML
   public void initialize() {
     SceneController.setContentPane(contentPane);
@@ -29,8 +31,12 @@ public class MainLayoutController {
 
     if (userService.getCurrentUser() != null) {
       adminPane.setVisible(userService.getCurrentUser().isAdmin());
-      SceneController.setScene("Home.fxml", ("Welcome, " + userService.getCurrentUser().getName()));
+      SceneController.setScene("ProductList.fxml", ("Welcome, " + userService.getCurrentUser().getName()));
     }
+  }
+
+  public static void setProductController(ProductController productController) {
+    MainLayoutController.productController = productController;
   }
 
   public void setSceneLabel(String label) {
@@ -54,6 +60,47 @@ public class MainLayoutController {
     UserService userService = new UserService();
     userService.logoutUser();
     SceneController.showAuthenticationStage();
+  }
+
+  @FXML
+  public void goToHome() {
+    SceneController.setScene("ProductList.fxml", "Welcome, " + new UserService().getCurrentUser().getName());
+  }
+
+  @FXML
+  public void loadAllProducts() {
+    productController.loadAllProducts();
+    setSceneLabel("All Items");
+  }
+
+  @FXML
+  public void loadFleshyFruits() {
+    productController.getProductsByCategory("Fleshy Fruits");
+    setSceneLabel("Fleshy Fruits");
+  }
+
+  @FXML
+  public void loadDryFruits() {
+    productController.getProductsByCategory("Dry Fruits");
+    setSceneLabel("Dry Fruits");
+  }
+
+  @FXML
+  public void loadFruitSeeds() {
+    productController.getProductsByCategory("Fruit Seeds");
+    setSceneLabel("Fruit Seeds");
+  }
+
+  @FXML
+  public void loadFruitJuice() {
+    productController.getProductsByCategory("Fruit Juice");
+    setSceneLabel("Fruit Juice");
+  }
+
+  @FXML
+  public void loadFreshVegetables() {
+    productController.getProductsByCategory("Fresh Vegetables");
+    setSceneLabel("Fresh Vegetables");
   }
 
 }

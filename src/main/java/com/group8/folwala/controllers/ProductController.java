@@ -20,30 +20,30 @@ public class ProductController {
   @FXML
   private FlowPane productFlowPane;
 
+  ArrayList<Product> products;
+
   @FXML
   public void initialize() {
-    // ObservableList<Product> products =
-    // FXCollections.observableArrayList(Product.getAllProducts());
-
-    // productList.getItems().addAll(products);
-
-    // productList.getSelectionModel().selectedItemProperty().addListener(
-    // (observable, oldValue, newValue) -> printProductId(newValue));
-
-    loadProducts();
+    MainLayoutController.setProductController(this);
+    products = ProductService.getAllProducts();
+    loadAllProducts();
   }
 
-  // public void printProductId(Product product) {
-  // System.out.println(product.getName());
-  // }
-
-  private void loadProducts() {
-    ArrayList<Product> products = ProductService.getAllProducts();
-
+  public void loadAllProducts() {
+    productFlowPane.getChildren().clear();
     for (Product product : products) {
       VBox productBox = createProductBox(product);
       productFlowPane.getChildren().add(productBox);
     }
+  }
+
+  public void getProductsByCategory(String category) {
+    productFlowPane.getChildren().clear();
+    for (Product product : products)
+      if (product.getCategory().equals(category)) {
+        VBox productBox = createProductBox(product);
+        productFlowPane.getChildren().add(productBox);
+      }
   }
 
   private VBox createProductBox(Product product) {
@@ -54,7 +54,9 @@ public class ProductController {
     productBox.setSpacing(1);
     productBox.getStyleClass().add("product-box");
 
-    ImageView imageView = new ImageView("/images/products/" + product.getImage());
+    // ImageView imageView = new ImageView("/images/products/" +
+    // product.getImage());
+    ImageView imageView = new ImageView("/images/products/malta.jpg");
     imageView.setFitWidth(170);
     imageView.setFitHeight(170);
     imageView.preserveRatioProperty().set(true);
