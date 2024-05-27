@@ -1,6 +1,9 @@
 package com.group8.folwala.models;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
+
     private String name;
     private double price;
     private int productID;
@@ -25,7 +28,7 @@ public class Product {
         this.stockQuantity = stockQuantity;
         this.category = category;
         this.unit = unit;
-        this.isDeleted = false;
+        this.isDeleted = isDeleted;
         this.image = image;
     }
 

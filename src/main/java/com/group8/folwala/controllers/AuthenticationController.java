@@ -65,6 +65,7 @@ public class AuthenticationController {
       UserService userService = new UserService();
       userService.loginUser(phone, password);
       SceneController.showMainStage();
+      mainLayoutController.initialize();
     } else
       errorLabel.setText("This phone number is already associated with an account");
 

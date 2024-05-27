@@ -98,8 +98,8 @@ public class MainLayoutController {
   }
 
   @FXML
-  public void loadFreshVegetables() {
-    productController.getProductsByCategory("Fresh Vegetables");
+  public void loadVegetables() {
+    productController.getProductsByCategory("Vegetables");
     setSceneLabel("Fresh Vegetables");
   }
 

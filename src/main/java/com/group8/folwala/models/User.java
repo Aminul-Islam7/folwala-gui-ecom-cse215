@@ -1,6 +1,9 @@
 package com.group8.folwala.models;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+
     private String name;
     private String phone;
     private String password;
@@ -49,5 +52,4 @@ public class User {
                 ", isAdmin=" + isAdmin +
                 '}';
     }
-
 }

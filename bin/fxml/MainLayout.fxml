@@ -100,7 +100,7 @@
                         <Button mnemonicParsing="false" onAction="#loadDryFruits" styleClass="menu-btn" text="Dry Fruits" />
                         <Button mnemonicParsing="false" onAction="#loadFruitSeeds" styleClass="menu-btn" text="Fruit Seeds" />
                         <Button mnemonicParsing="false" onAction="#loadFruitJuice" styleClass="menu-btn" text="Fruit Juice" />
-                        <Button mnemonicParsing="false" onAction="#loadFreshVegetables" styleClass="menu-btn" text="Fresh Vegetables" />
+                        <Button mnemonicParsing="false" onAction="#loadVegetables" styleClass="menu-btn" text="Fresh Vegetables" />
                      </children>
                   </VBox>
                   <AnchorPane fx:id="adminPane" layoutX="23.0" layoutY="296.0" prefHeight="298.0" prefWidth="212.0" styleClass="admin-pane" visible="false">

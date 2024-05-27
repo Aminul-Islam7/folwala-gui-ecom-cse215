@@ -2,16 +2,14 @@ package com.group8.folwala.services;
 
 import com.group8.folwala.models.User;
 
-import javafx.scene.Scene;
-
 import java.io.*;
 import java.util.ArrayList;
 
 public class UserService {
   private ArrayList<User> users;
   private User currentUser;
-  private static final String USER_FILE_PATH = "data/users.txt";
-  private static final String SESSION_FILE_PATH = "data/session.txt";
+  private static final String USER_FILE_PATH = "data/users.dat";
+  private static final String SESSION_FILE_PATH = "data/session.dat";
 
   public UserService() {
     users = loadUsers();
@@ -24,7 +22,7 @@ public class UserService {
     }
     User newUser = new User(name, phone, password, address, isAdmin);
     users.add(newUser);
-    saveUser(newUser);
+    saveUsers();
     return true;
   }
 
@@ -58,59 +56,44 @@ public class UserService {
 
   private ArrayList<User> loadUsers() {
     ArrayList<User> users = new ArrayList<>();
-    try (BufferedReader br = new BufferedReader(new FileReader(USER_FILE_PATH))) {
-      String line;
-      while ((line = br.readLine()) != null) {
-        String[] userDetails = line.split(":");
-        if (userDetails.length == 5) {
-          String name = userDetails[0];
-          String phone = userDetails[1];
-          String password = userDetails[2];
-          String address = userDetails[3];
-          boolean isAdmin = Boolean.parseBoolean(userDetails[4]);
-          users.add(new User(name, phone, password, address, isAdmin));
-        }
-      }
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(USER_FILE_PATH))) {
+      users = (ArrayList<User>) ois.readObject();
+    } catch (IOException | ClassNotFoundException e) {
+      System.out.println("No users found or failed to load users: " + e.getMessage());
     }
     return users;
   }
 
-  private void saveUser(User user) {
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(USER_FILE_PATH, true))) {
-      bw.write(user.getName() + ":" + user.getPhone() + ":" + user.getPassword() + ":" + user.getAddress() + ":"
-          + user.isAdmin());
-      bw.newLine();
+  private void saveUsers() {
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USER_FILE_PATH))) {
+      oos.writeObject(users);
     } catch (IOException e) {
-      System.out.println(e.getMessage());
+      System.out.println("Failed to save users: " + e.getMessage());
     }
   }
 
   private void saveSession() {
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(SESSION_FILE_PATH))) {
-      if (currentUser != null) {
-        bw.write(currentUser.getPhone());
-      }
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SESSION_FILE_PATH))) {
+      oos.writeObject(currentUser);
     } catch (IOException e) {
-      System.out.println(e.getMessage());
+      System.out.println("Failed to save session: " + e.getMessage());
     }
   }
 
   private User loadSession() {
-    try (BufferedReader br = new BufferedReader(new FileReader(SESSION_FILE_PATH))) {
-      String phone = br.readLine();
-      return getUserByPhone(phone);
-    } catch (IOException e) {
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SESSION_FILE_PATH))) {
+      return (User) ois.readObject();
+    } catch (IOException | ClassNotFoundException e) {
+      System.out.println("No session found or failed to load session: " + e.getMessage());
       return null;
     }
   }
 
   private void clearSession() {
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(SESSION_FILE_PATH))) {
-      bw.write("");
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SESSION_FILE_PATH))) {
+      oos.writeObject(null);
     } catch (IOException e) {
-      System.out.println(e.getMessage());
+      System.out.println("Failed to clear session: " + e.getMessage());
     }
   }
 }

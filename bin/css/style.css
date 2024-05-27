@@ -192,7 +192,9 @@
 .form .label {
 	-fx-text-fill: #505050;
 	-fx-font-size: 16;
-	-fx-margin: 10;
+}
+
+.form .text-field {
 }
 
 #productFlowPane {
