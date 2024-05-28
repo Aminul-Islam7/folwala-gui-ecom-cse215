@@ -103,4 +103,10 @@ public class MainLayoutController {
     setSceneLabel("Fresh Vegetables");
   }
 
+  @FXML
+  public void visitAddProduct() {
+    System.out.println("Add Product");
+    SceneController.setScene("AddProduct.fxml", "Add Product");
+  }
+
 }

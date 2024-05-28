@@ -103,7 +103,7 @@
                         <Button mnemonicParsing="false" onAction="#loadVegetables" styleClass="menu-btn" text="Fresh Vegetables" />
                      </children>
                   </VBox>
-                  <AnchorPane fx:id="adminPane" layoutX="23.0" layoutY="296.0" prefHeight="298.0" prefWidth="212.0" styleClass="admin-pane" visible="false">
+                  <AnchorPane fx:id="adminPane" layoutX="23.0" layoutY="296.0" prefHeight="298.0" prefWidth="212.0" styleClass="admin-pane">
                      <children>
                         <VBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="14.0">
                            <children>
@@ -122,7 +122,7 @@
                                     <FontAwesomeIcon glyphName="CUBE" size="30" />
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" styleClass="menu-btn" text="Add Product">
+                              <Button mnemonicParsing="false" onAction="#visitAddProduct" styleClass="menu-btn" text="Add Product">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="PLUS" size="35" />
                                  </graphic>
