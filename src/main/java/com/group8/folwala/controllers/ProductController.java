@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.net.URL;
 import java.util.ArrayList;
 
 import com.group8.folwala.models.Product;
@@ -54,9 +56,12 @@ public class ProductController {
     productBox.setSpacing(1);
     productBox.getStyleClass().add("product-box");
 
-    // ImageView imageView = new ImageView("/images/products/" +
-    // product.getImage());
-    ImageView imageView = new ImageView("/images/products/malta.jpg");
+    URL imageURL = getClass().getResource("/images/products/" + product.getImage());
+    if (imageURL == null)
+      imageURL = getClass().getResource("/images/logo.png");
+
+    ImageView imageView = new ImageView(imageURL.toString());
+
     imageView.setFitWidth(170);
     imageView.setFitHeight(170);
     imageView.preserveRatioProperty().set(true);

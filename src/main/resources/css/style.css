@@ -26,6 +26,17 @@
 	-fx-background-color: #e0ac00;
 }
 
+.action-btn {
+	-fx-background-color: #22423d;
+	-fx-text-fill: #fbc108;
+	-fx-font-size: 16;
+	-fx-font-weight: bold;
+}
+
+.action-btn:hover {
+	-fx-background-color: black;
+}
+
 .heading {
 	-fx-text-fill: #22423d;
 	-fx-font-size: 20;
@@ -218,13 +229,6 @@
 	-fx-text-fill: #22423d;
 }
 
-#addProductButton {
-	-fx-background-color: #22423d;
-	-fx-text-fill: #fbc108;
-	-fx-font-size: 16;
-	-fx-font-weight: bold;
-}
-
 #productFlowPane {
 	-fx-padding: 25;
 }
@@ -249,13 +253,6 @@
 .product-box .price {
 	-fx-text-fill: #22423d;
 	-fx-font-size: 18;
-	-fx-font-weight: bold;
-}
-
-.product-box .add-to-cart-btn {
-	-fx-background-color: #22423d;
-	-fx-text-fill: #fbc108;
-	-fx-font-size: 16;
 	-fx-font-weight: bold;
 }
 

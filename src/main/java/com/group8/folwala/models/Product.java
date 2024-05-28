@@ -66,7 +66,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return name + " - " + price + " - " + stockQuantity + " - " + category + " - " + unit;
+        return category + " - " + name + " - " + unit + " - " + price;
     }
 
     public void updateStock(int quantity) {

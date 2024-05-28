@@ -27,7 +27,7 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/tempLogo.png" />
+                        <Image url="@../images/logo.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="backButton" alignment="CENTER" layoutX="270.0" layoutY="17.0" mnemonicParsing="false" onAction="#goBack" styleClass="nav-btn">
@@ -122,7 +122,7 @@
                                     <FontAwesomeIcon glyphName="CUBE" size="30" />
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#visitAddProduct" styleClass="menu-btn" text="Add Product">
+                              <Button mnemonicParsing="false" onAction="#visitAddProducts" styleClass="menu-btn" text="Add Products">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="PLUS" size="35" />
                                  </graphic>

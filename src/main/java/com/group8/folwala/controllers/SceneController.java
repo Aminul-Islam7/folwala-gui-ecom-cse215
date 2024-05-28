@@ -88,7 +88,7 @@ public class SceneController {
       String css = SceneController.class.getResource("/css/style.css").toExternalForm();
       authenticationScene.getStylesheets().add(css);
 
-      Image icon = new Image(SceneController.class.getResource("/images/tempLogo.png").toExternalForm());
+      Image icon = new Image(SceneController.class.getResource("/images/logo.png").toExternalForm());
       authenticationStage.getIcons().add(icon);
 
       authenticationStage.setTitle("Folwala - Buy fresh fruits and vegetables");

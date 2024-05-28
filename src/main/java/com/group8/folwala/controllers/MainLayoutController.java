@@ -104,9 +104,8 @@ public class MainLayoutController {
   }
 
   @FXML
-  public void visitAddProduct() {
-    System.out.println("Add Product");
-    SceneController.setScene("AddProduct.fxml", "Add Product");
+  public void visitAddProducts() {
+    SceneController.setScene("AddProducts.fxml", "Add Products");
   }
 
 }
