@@ -34,7 +34,7 @@
 }
 
 .action-btn:hover {
-	-fx-background-color: black;
+	-fx-background-color: #142b27;
 }
 
 .heading {
@@ -157,11 +157,11 @@
 
 .menu-btn:hover {
 	-fx-background-color: transparent;
-	-fx-text-fill: black;
+	-fx-text-fill: #142b27;
 }
 
 .menu-btn:hover .glyph-icon {
-	-fx-fill: black;
+	-fx-fill: #142b27;
 }
 
 /* Header */
@@ -254,6 +254,10 @@
 	-fx-text-fill: #22423d;
 	-fx-font-size: 18;
 	-fx-font-weight: bold;
+}
+
+.product-box .button .glyph-icon {
+	-fx-fill: #142b27;
 }
 
 .footer {

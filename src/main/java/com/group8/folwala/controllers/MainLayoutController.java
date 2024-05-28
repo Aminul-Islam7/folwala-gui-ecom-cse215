@@ -19,7 +19,7 @@ public class MainLayoutController {
   @FXML
   private Label sceneLabel;
 
-  private static ProductController productController;
+  private static ProductListController productController;
 
   @FXML
   public void initialize() {
@@ -35,7 +35,7 @@ public class MainLayoutController {
     }
   }
 
-  public static void setProductController(ProductController productController) {
+  public static void setProductController(ProductListController productController) {
     MainLayoutController.productController = productController;
   }
 

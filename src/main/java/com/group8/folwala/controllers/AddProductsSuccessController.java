@@ -1,7 +1,5 @@
 package com.group8.folwala.controllers;
 
-import java.net.URL;
-
 import com.group8.folwala.models.Product;
 
 import javafx.fxml.FXML;

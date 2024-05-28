@@ -7,6 +7,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import com.group8.folwala.services.ProductService;
 import com.group8.folwala.services.UserService;
 import com.group8.folwala.models.User;
 
@@ -34,6 +36,10 @@ public class AuthenticationController {
   @FXML
   public void initialize() {
     userService = new UserService();
+
+    userService.createFiles();
+    ProductService.createFiles();
+
     if (adminPasswordField != null)
       adminPasswordField.setVisible(false);
   }

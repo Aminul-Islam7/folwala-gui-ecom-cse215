@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class AddProductsController {
   private Button chooseImageButton, chooseCSVButton;
 
   @FXML
-  private TextField nameField, priceField, quantityField, unitField;
+  private TextField nameField, priceField, unitField;
 
   @FXML
   private ImageView productImageView, loaderImageView;
@@ -99,10 +100,10 @@ public class AddProductsController {
 
     if (selectedCSVFile != null) {
       chooseCSVButton.setText(selectedCSVFile.getName());
-      handleBulkUploadProducts();
     }
   }
 
+  @FXML
   private void handleBulkUploadProducts() {
     if (selectedCSVFile == null) {
       errorLabel2.setText("Please select a CSV file to upload");
@@ -118,29 +119,30 @@ public class AddProductsController {
         lineNumber++;
         String[] data = line.split(",");
 
-        if (data.length != 7) {
+        if (data.length != 6) {
+          System.out.println("Invalid CSV format at line " + lineNumber);
           errorLabel2.setText("Invalid CSV format at line " + lineNumber);
-          continue;
+          return;
         }
 
         try {
           Product product = new Product(
-              ProductService.generateProductID(),
-              data[0], // name
-              Double.parseDouble(data[1]), // price
-              Integer.parseInt(data[2]), // quantity
-              data[3], // category
-              data[4], // unit
-              Boolean.parseBoolean(data[5]), // isDeleted
-              data[6] // image
+              ProductService.generateProductID(), // productID
+              data[1], // name
+              data[2], // unit
+              Double.parseDouble(data[3]), // price
+              data[4], // category
+              data[5] // image
           );
           products.add(product);
+          System.out.println(product);
         } catch (NumberFormatException e) {
           errorLabel2.setText("Invalid data format at line " + lineNumber);
         }
       }
 
       for (Product product : products) {
+        System.out.println(product);
         ProductService.saveProduct(product);
       }
 
@@ -155,11 +157,10 @@ public class AddProductsController {
   private void handleAddProduct() {
     String name = nameField.getText();
     String price = priceField.getText();
-    String quantity = quantityField.getText();
     String unit = unitField.getText();
     String category = categoryChoiceBox.getValue();
 
-    if (name.isEmpty() || price.isEmpty() || quantity.isEmpty() || unit.isEmpty() || category == null) {
+    if (name.isEmpty() || price.isEmpty() || unit.isEmpty() || category == null) {
       loaderImageView.setVisible(false);
       errorLabel1.setText("Please fill in all the fields");
       return;
@@ -189,11 +190,9 @@ public class AddProductsController {
     Product product = new Product(
         ProductService.generateProductID(),
         name,
-        Double.parseDouble(price),
-        Integer.parseInt(quantity),
-        category,
         unit,
-        false,
+        Double.parseDouble(price),
+        category,
         destFile.getName());
     ProductService.saveProduct(product);
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.group8.folwala.controllers.SceneController;
 import com.group8.folwala.models.User;
+import com.group8.folwala.services.ProductService;
 import com.group8.folwala.services.UserService;
 
 import javafx.application.Application;
@@ -14,7 +15,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         SceneController.setStages();
         UserService userService = new UserService();
         User currentUser = userService.getCurrentUser();

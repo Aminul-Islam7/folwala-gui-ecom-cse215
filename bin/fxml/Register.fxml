@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="163.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/tempLogo.png" />
+            <Image url="@../images/logo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="176.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
@@ -28,7 +28,7 @@
       <Button fx:id="loginButton" layoutX="125.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleRegister" prefWidth="300.0" text="Register" />
       <Label layoutX="149.0" layoutY="573.0" styleClass="prompt" text="Already have an account?" textAlignment="CENTER" />
       <Button fx:id="loginPromptButton" layoutX="300.0" layoutY="566.0" mnemonicParsing="false" onAction="#switchToLoginScene" styleClass="prompt-button" text="Login here!" />
-      <Label fx:id="errorLabel" alignment="CENTER" layoutX="106.0" layoutY="600.0" prefHeight="20.0" prefWidth="338.0" styleClass="error-message-light" textAlignment="CENTER" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="17.0" layoutY="600.0" prefHeight="20.0" prefWidth="519.0" styleClass="error-message-light" textAlignment="CENTER" />
       <CheckBox fx:id="isAdminCheckbox" layoutX="126.0" layoutY="305.0" mnemonicParsing="false" onAction="#showAdminPasswordField" text="Register as admin" />
       <PasswordField fx:id="adminPasswordField" layoutX="274.0" layoutY="296.0" onAction="#handleRegister" prefHeight="39.0" prefWidth="152.0" promptText="Admin Password" />
    </children>

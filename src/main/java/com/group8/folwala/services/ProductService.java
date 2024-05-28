@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ProductService {
-  private static final String PRODUCT_FILE_PATH = "data/products.dat";
+  private static final String PRODUCT_FILE_PATH = "src/main/resources/data/products.dat";
 
   public static ArrayList<Product> getProductsByCategory(String category) {
     ArrayList<Product> products = new ArrayList<>();
@@ -52,5 +52,14 @@ public class ProductService {
     ArrayList<Product> products = getAllProducts();
     int productID = products.size() > 0 ? products.get(products.size() - 1).getProductID() + 1 : 1;
     return productID;
+  }
+
+  public static void createFiles() {
+    try {
+      File file = new File(PRODUCT_FILE_PATH);
+      file.createNewFile();
+    } catch (IOException e) {
+      System.out.println("Failed to create products file: " + e.getMessage());
+    }
   }
 }

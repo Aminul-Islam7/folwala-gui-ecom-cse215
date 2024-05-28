@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class UserService {
   private ArrayList<User> users;
   private User currentUser;
-  private static final String USER_FILE_PATH = "data/users.dat";
-  private static final String SESSION_FILE_PATH = "data/session.dat";
+  private static final String USER_FILE_PATH = "src/main/resources/data/users.dat";
+  private static final String SESSION_FILE_PATH = "src/main/resources/data/session.dat";
 
   public UserService() {
     users = loadUsers();
@@ -94,6 +94,15 @@ public class UserService {
       oos.writeObject(null);
     } catch (IOException e) {
       System.out.println("Failed to clear session: " + e.getMessage());
+    }
+  }
+
+  public void createFiles() {
+    try {
+      new File(USER_FILE_PATH).createNewFile();
+      new File(SESSION_FILE_PATH).createNewFile();
+    } catch (IOException e) {
+      System.out.println("Failed to create files: " + e.getMessage());
     }
   }
 }
