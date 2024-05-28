@@ -22,7 +22,7 @@ public class AddProductsSuccessController {
   public void setProductDetails(Product product) {
     categoryLabel.setText(product.getCategory());
     nameLabel.setText(product.getName());
-    priceLabel.setText(String.valueOf((int) product.getPrice()));
+    priceLabel.setText("৳ " + String.valueOf((int) product.getPrice()));
     unitLabel.setText(product.getUnit());
   }
 
@@ -30,4 +30,8 @@ public class AddProductsSuccessController {
     imageView.setImage(new Image(string));
   }
 
+  @FXML
+  public void visitInventoryScene() {
+    SceneController.setScene("Inventory.fxml", "Inventory");
+  }
 }

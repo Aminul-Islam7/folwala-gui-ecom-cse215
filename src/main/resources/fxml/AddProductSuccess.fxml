@@ -23,6 +23,6 @@
             <Label fx:id="priceLabel" styleClass="price" text="Price" />
          </children>
       </VBox>
-      <Button layoutX="285.0" layoutY="527.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="280.0" text="Back to Inventory" />
+      <Button layoutX="285.0" layoutY="527.0" mnemonicParsing="false" onAction="#visitInventoryScene" prefHeight="39.0" prefWidth="280.0" text="Back to Inventory" />
    </children>
 </AnchorPane>

@@ -127,7 +127,7 @@ public class AddProductsController {
 
         try {
           Product product = new Product(
-              ProductService.generateProductID(), // productID
+              Integer.parseInt(data[0]), // productID
               data[1], // name
               data[2], // unit
               Double.parseDouble(data[3]), // price
@@ -135,18 +135,15 @@ public class AddProductsController {
               data[5] // image
           );
           products.add(product);
-          System.out.println(product);
         } catch (NumberFormatException e) {
           errorLabel2.setText("Invalid data format at line " + lineNumber);
         }
       }
 
-      for (Product product : products) {
-        System.out.println(product);
+      for (Product product : products)
         ProductService.saveProduct(product);
-      }
 
-      errorLabel2.setText("Products uploaded successfully");
+      SceneController.setScene("Inventory.fxml", "Products Added Successfully");
     } catch (IOException e) {
       errorLabel2.setText("Error reading CSV file");
       e.printStackTrace();

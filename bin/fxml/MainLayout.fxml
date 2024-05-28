@@ -117,12 +117,12 @@
                                     <FontAwesomeIcon glyphName="CLIPBOARD" size="30" />
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" styleClass="menu-btn" text="Inventory">
+                              <Button mnemonicParsing="false" onAction="#visitInventoryScene" styleClass="menu-btn" text="Inventory">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="CUBE" size="30" />
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#visitAddProducts" styleClass="menu-btn" text="Add Products">
+                              <Button mnemonicParsing="false" onAction="#visitAddProductsScene" styleClass="menu-btn" text="Add Products">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="PLUS" size="35" />
                                  </graphic>

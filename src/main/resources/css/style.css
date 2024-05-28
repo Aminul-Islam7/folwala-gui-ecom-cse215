@@ -229,7 +229,8 @@
 	-fx-text-fill: #22423d;
 }
 
-#productFlowPane {
+#productFlowPane,
+#inventoryFlowPane {
 	-fx-padding: 25;
 }
 
@@ -258,6 +259,28 @@
 
 .product-box .button .glyph-icon {
 	-fx-fill: #142b27;
+}
+
+.inventory-item {
+	-fx-background-color: white;
+	-fx-background-radius: 5;
+	-fx-padding: 10;
+	-fx-border-color: rgb(34, 66, 61, 0.4);
+	-fx-border-width: 1;
+	-fx-border-radius: 5;
+}
+
+.inventory-item .label {
+	-fx-text-fill: #22423d;
+	-fx-font-size: 14;
+}
+
+.inventory-item .button .glyph-icon {
+	-fx-fill: #142b27;
+}
+
+.inventory-item .button:hover {
+	-fx-background-color: #e0ac00;
 }
 
 .footer {

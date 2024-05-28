@@ -52,6 +52,6 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return category + " - " + name + " - " + unit + " - " + price;
+        return productID + ". " + name + " (৳ " + price + " / " + unit + ") - " + category;
     }
 }

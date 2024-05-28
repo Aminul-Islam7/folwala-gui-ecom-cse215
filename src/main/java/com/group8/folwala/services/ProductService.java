@@ -48,6 +48,21 @@ public class ProductService {
     }
   }
 
+  public static void deleteProduct(Product product) {
+    ArrayList<Product> products = getAllProducts();
+    for (Product p : products) {
+      if (p.getProductID() == product.getProductID()) {
+        products.remove(p);
+        break;
+      }
+    }
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PRODUCT_FILE_PATH))) {
+      oos.writeObject(products);
+    } catch (IOException e) {
+      System.out.println("Failed to delete product: " + e.getMessage());
+    }
+  }
+
   public static int generateProductID() {
     ArrayList<Product> products = getAllProducts();
     int productID = products.size() > 0 ? products.get(products.size() - 1).getProductID() + 1 : 1;
@@ -60,6 +75,19 @@ public class ProductService {
       file.createNewFile();
     } catch (IOException e) {
       System.out.println("Failed to create products file: " + e.getMessage());
+    }
+  }
+
+  public static void exportProducts() {
+    ArrayList<Product> products = getAllProducts();
+    try (PrintWriter writer = new PrintWriter(new FileWriter("products.csv"))) {
+      writer.println("Product ID,Name,Unit,Price,Category,Image");
+      for (Product product : products) {
+        writer.println(product.getProductID() + "," + product.getName() + "," + product.getUnit() + ","
+            + product.getPrice() + "," + product.getCategory() + "," + product.getImage());
+      }
+    } catch (IOException e) {
+      System.out.println("Failed to export products: " + e.getMessage());
     }
   }
 }
