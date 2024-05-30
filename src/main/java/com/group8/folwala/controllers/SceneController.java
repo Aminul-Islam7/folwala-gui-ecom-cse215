@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
 
@@ -17,6 +18,7 @@ public class SceneController {
   private static Stage authenticationStage;
   private static Stage mainStage;
   private static Stage currentStage;
+  private static Stage secondaryStage;
 
   private static AnchorPane contentPane;
   public static ArrayList<String> viewList = new ArrayList<>();
@@ -52,6 +54,10 @@ public class SceneController {
       viewList.add(nextView);
       loadScene(nextView, sceneLabels.get(nextView));
     }
+  }
+
+  public static String getCurrentView() {
+    return viewList.get(viewList.size() - 1);
   }
 
   public static void setScene(String fxmlFile, String sceneLabel) {
@@ -144,6 +150,30 @@ public class SceneController {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public static void showProductEditStage() {
+    Stage productEditStage = new Stage();
+    secondaryStage = productEditStage;
+    productEditStage.initModality(Modality.APPLICATION_MODAL);
+    productEditStage.initOwner(mainStage);
+    try {
+      Parent root = FXMLLoader.load(SceneController.class.getResource("/fxml/EditProduct.fxml"));
+      Scene scene = new Scene(root);
+      productEditStage.setScene(scene);
+      productEditStage.getIcons()
+          .add(new Image(SceneController.class.getResource("/images/logo.png").toExternalForm()));
+      productEditStage.setTitle("Edit Product");
+      productEditStage.setResizable(false);
+      productEditStage.setAlwaysOnTop(true);
+      productEditStage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void closeSecondaryStage() {
+    secondaryStage.close();
   }
 
 }

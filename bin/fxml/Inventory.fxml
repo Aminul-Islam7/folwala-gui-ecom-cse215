@@ -4,53 +4,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="850.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group8.folwala.controllers.InventoryController">
    <children>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="630.0" prefWidth="850.0">
+      <Pane prefHeight="60.0" prefWidth="850.0" styleClass="form">
+         <children>
+            <Label fx:id="totalProductsLabel" layoutX="23.0" layoutY="15.0" styleClass="heading" text="Total Products: " />
+            <TextField fx:id="searchField" layoutX="293.0" layoutY="10.0" onAction="#searchProducts" onKeyTyped="#searchProducts" prefHeight="39.0" prefWidth="212.0" promptText="Search Inventory" />
+            <Button layoutX="512.0" layoutY="12.0" mnemonicParsing="false" onAction="#searchProducts">
+               <graphic>
+                  <FontAwesomeIcon glyphName="SEARCH" />
+               </graphic>
+            </Button>
+            <Button layoutX="623.0" layoutY="11.0" mnemonicParsing="false" onAction="#exportProducts" text="Export Producs (.csv)">
+               <graphic>
+                  <FontAwesomeIcon glyphName="ARROW_DOWN" />
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <ScrollPane hbarPolicy="NEVER" layoutY="60.0" prefHeight="570.0" prefWidth="850.0">
          <content>
-            <FlowPane fx:id="inventoryFlowPane" hgap="10.0" prefHeight="628.0" prefWidth="850.0" vgap="10.0">
-               <children>
-                  <HBox prefWidth="380.0" spacing="6.0" styleClass="inventory-item">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/logo.png" />
-                           </image>
-                        </ImageView>
-                        <VBox prefHeight="43.0" prefWidth="115.0">
-                           <children>
-                              <Label text="Name" />
-                              <Label text="Category" />
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="41.0" prefWidth="87.0">
-                           <children>
-                              <Label text="Unit" />
-                              <Label text="Price" />
-                           </children>
-                        </VBox>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="43.0">
-                           <graphic>
-                              <FontAwesomeIcon glyphName="PENCIL" />
-                           </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="43.0">
-                           <graphic>
-                              <FontAwesomeIcon glyphName="TRASH" />
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </FlowPane>
+            <FlowPane fx:id="inventoryFlowPane" hgap="10.0" prefWidth="850.0" vgap="10.0" />
          </content>
       </ScrollPane>
    </children>

@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class MainLayoutController {
@@ -18,6 +19,9 @@ public class MainLayoutController {
 
   @FXML
   private Label sceneLabel;
+
+  @FXML
+  private TextField searchField;
 
   private static ProductListController productController;
 
@@ -63,8 +67,8 @@ public class MainLayoutController {
   }
 
   @FXML
-  public void goToHome() {
-    SceneController.setScene("ProductList.fxml", "Welcome, " + new UserService().getCurrentUser().getName());
+  public void handleSearch() {
+    productController.searchProducts(searchField.getText());
   }
 
   @FXML
@@ -101,6 +105,12 @@ public class MainLayoutController {
   public void loadVegetables() {
     productController.getProductsByCategory("Vegetables");
     setSceneLabel("Fresh Vegetables");
+  }
+
+  @FXML
+  public void visitHome() {
+    if (!SceneController.getCurrentView().equals("ProductList.fxml"))
+      SceneController.setScene("ProductList.fxml", "Welcome, " + new UserService().getCurrentUser().getName());
   }
 
   @FXML

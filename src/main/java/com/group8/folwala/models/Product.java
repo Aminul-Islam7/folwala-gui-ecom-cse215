@@ -50,6 +50,30 @@ public class Product implements Serializable {
         return image;
     }
 
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return productID + ". " + name + " (৳ " + price + " / " + unit + ") - " + category;

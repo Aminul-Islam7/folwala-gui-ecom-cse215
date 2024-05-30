@@ -13,7 +13,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import com.group8.folwala.models.Product;
+import com.group8.folwala.models.User;
+import com.group8.folwala.services.CartService;
 import com.group8.folwala.services.ProductService;
+import com.group8.folwala.services.UserService;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 
@@ -24,15 +27,22 @@ public class ProductListController {
 
   ArrayList<Product> products;
 
+  User currentUser;
+
   @FXML
   public void initialize() {
     MainLayoutController.setProductController(this);
+
+    UserService userService = new UserService();
+    currentUser = userService.getCurrentUser();
+
     products = ProductService.getAllProducts();
     loadAllProducts();
   }
 
   public void loadAllProducts() {
     productFlowPane.getChildren().clear();
+    // Collections.reverse(products);
     for (Product product : products) {
       VBox productBox = createProductBox(product);
       productFlowPane.getChildren().add(productBox);
@@ -118,7 +128,7 @@ public class ProductListController {
     addToCartButton.setOnAction(e -> {
       int quantity = Integer.parseInt(quantityField.getText());
       if (quantity > 0) {
-        // cart.addItemToCart(product, quantity);
+        CartService.addItemToCart(currentUser.getPhone(), product, quantity);
         quantityField.setText("0"); // Reset after adding to cart
         System.out.println(product.getName() + " added to cart with quantity " + quantity);
       }
@@ -133,6 +143,28 @@ public class ProductListController {
         addToCartButton);
 
     return productBox;
+  }
+
+  public void searchProducts(String query) {
+    if (query.isEmpty()) {
+      loadAllProducts();
+      return;
+    }
+
+    ArrayList<Product> searchResults = new ArrayList<>();
+    for (Product product : products) {
+      if (product.getName().toLowerCase().contains(query) || product.getCategory().toLowerCase().contains(query)
+          || product.getUnit().toLowerCase().contains(query) || String.valueOf(product.getPrice()).contains(query)
+          || String.valueOf(product.getProductID()).contains(query)) {
+        searchResults.add(product);
+      }
+    }
+
+    productFlowPane.getChildren().clear();
+    for (Product product : searchResults) {
+      VBox productBox = createProductBox(product);
+      productFlowPane.getChildren().add(productBox);
+    }
   }
 
 }

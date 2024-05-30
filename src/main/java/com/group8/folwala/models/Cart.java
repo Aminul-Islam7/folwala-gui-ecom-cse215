@@ -1,0 +1,56 @@
+package com.group8.folwala.models;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cart implements Serializable {
+
+  private String userPhone;
+  private List<CartItem> cartItems;
+
+  public Cart(String userPhone) {
+    this.userPhone = userPhone;
+    this.cartItems = new ArrayList<>();
+  }
+
+  public String getUserPhone() {
+    return userPhone;
+  }
+
+  public List<CartItem> getCartItems() {
+    return cartItems;
+  }
+
+  public void addCartItem(CartItem cartItem) {
+    for (CartItem item : cartItems) {
+      if (item.getProduct().getProductID() == cartItem.getProduct().getProductID()) {
+        item.setQuantity(item.getQuantity() + cartItem.getQuantity());
+        return;
+      }
+    }
+    cartItems.add(cartItem);
+  }
+
+  public void removeCartItem(int productId) {
+    cartItems.removeIf(item -> item.getProduct().getProductID() == productId);
+  }
+
+  public double getTotalPrice() {
+    double totalPrice = 0;
+    for (CartItem item : cartItems) {
+      totalPrice += item.getProduct().getPrice() * item.getQuantity();
+    }
+    return totalPrice;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder("Cart for " + userPhone + ":\n");
+    for (CartItem item : cartItems) {
+      sb.append(item.toString()).append("\n");
+    }
+    sb.append("Total Price: ").append(getTotalPrice());
+    return sb.toString();
+  }
+}

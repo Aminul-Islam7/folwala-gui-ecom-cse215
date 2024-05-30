@@ -38,9 +38,9 @@
 }
 
 .heading {
-	-fx-text-fill: #22423d;
-	-fx-font-size: 20;
-	-fx-font-weight: bold;
+	-fx-text-fill: #22423d !important;
+	-fx-font-size: 20 !important;
+	-fx-font-weight: bold !important;
 }
 
 .normal {

@@ -81,13 +81,31 @@ public class ProductService {
   public static void exportProducts() {
     ArrayList<Product> products = getAllProducts();
     try (PrintWriter writer = new PrintWriter(new FileWriter("products.csv"))) {
-      writer.println("Product ID,Name,Unit,Price,Category,Image");
       for (Product product : products) {
         writer.println(product.getProductID() + "," + product.getName() + "," + product.getUnit() + ","
             + product.getPrice() + "," + product.getCategory() + "," + product.getImage());
       }
     } catch (IOException e) {
       System.out.println("Failed to export products: " + e.getMessage());
+    }
+  }
+
+  public static void updateProduct(Product product) {
+    ArrayList<Product> products = getAllProducts();
+    for (Product p : products) {
+      if (p.getProductID() == product.getProductID()) {
+        p.setName(product.getName());
+        p.setUnit(product.getUnit());
+        p.setPrice(product.getPrice());
+        p.setCategory(product.getCategory());
+        p.setImage(product.getImage());
+        break;
+      }
+    }
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PRODUCT_FILE_PATH))) {
+      oos.writeObject(products);
+    } catch (IOException e) {
+      System.out.println("Failed to update product: " + e.getMessage());
     }
   }
 }

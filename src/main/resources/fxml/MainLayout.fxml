@@ -40,8 +40,8 @@
                         <FontAwesomeIcon glyphName="ARROW_RIGHT" size="20" />
                      </graphic>
                   </Button>
-                  <TextField fx:id="searchField" layoutX="805.0" layoutY="16.0" prefHeight="39.0" prefWidth="222.0" promptText="Search fruits or vegetables" />
-                  <Button layoutX="1035.0" layoutY="16.0" mnemonicParsing="false" prefHeight="38.0">
+                  <TextField fx:id="searchField" layoutX="805.0" layoutY="16.0" onAction="#handleSearch" onKeyTyped="#handleSearch" onMouseClicked="#visitHome" prefHeight="39.0" prefWidth="222.0" promptText="Search fruits or vegetables" />
+                  <Button layoutX="1035.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="38.0">
                      <graphic>
                         <FontAwesomeIcon glyphName="SEARCH" />
                      </graphic>
@@ -60,7 +60,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" layoutX="29.0" layoutY="23.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#goToHome" styleClass="menu-btn" text="Home">
+                        <Button mnemonicParsing="false" onAction="#visitHome" styleClass="menu-btn" text="Home">
                            <graphic>
                               <FontAwesomeIcon glyphName="HOME" size="30" />
                            </graphic>

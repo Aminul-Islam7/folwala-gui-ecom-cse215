@@ -17,7 +17,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -115,24 +114,25 @@ public class AddProductsController {
 
     try (BufferedReader br = new BufferedReader(new FileReader(selectedCSVFile))) {
       String line;
+      int id = ProductService.generateProductID();
       while ((line = br.readLine()) != null) {
+        System.out.println(line);
         lineNumber++;
         String[] data = line.split(",");
 
-        if (data.length != 6) {
-          System.out.println("Invalid CSV format at line " + lineNumber);
+        if (data.length != 5) {
           errorLabel2.setText("Invalid CSV format at line " + lineNumber);
           return;
         }
 
         try {
           Product product = new Product(
-              Integer.parseInt(data[0]), // productID
-              data[1], // name
-              data[2], // unit
-              Double.parseDouble(data[3]), // price
-              data[4], // category
-              data[5] // image
+              id++,
+              data[0], // name
+              data[1], // unit
+              Double.parseDouble(data[2]), // price
+              data[3], // category
+              data[4] // image
           );
           products.add(product);
         } catch (NumberFormatException e) {
