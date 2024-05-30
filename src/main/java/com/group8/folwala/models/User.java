@@ -52,4 +52,5 @@ public class User implements Serializable {
                 ", isAdmin=" + isAdmin +
                 '}';
     }
+
 }

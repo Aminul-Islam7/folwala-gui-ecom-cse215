@@ -1,5 +1,6 @@
 package com.group8.folwala.controllers;
 
+import com.group8.folwala.services.CartService;
 import com.group8.folwala.services.UserService;
 
 import javafx.event.ActionEvent;
@@ -15,23 +16,28 @@ public class MainLayoutController {
   private AnchorPane contentPane, adminPane;
 
   @FXML
-  private Button backButton, forwardButton;
+  private Button backButton, forwardButton, cartButton;
 
   @FXML
-  private Label sceneLabel;
+  private Label sceneLabel, cartItemCountLabel;
 
   @FXML
   private TextField searchField;
 
+  private int cartSize;
+
   private static ProductListController productController;
+
+  UserService userService = new UserService();
 
   @FXML
   public void initialize() {
     SceneController.setContentPane(contentPane);
     SceneController.setMainLayoutController(this);
     AuthenticationController.setMainLayoutController(this);
+    ProductListController.setMainLayoutController(this);
 
-    UserService userService = new UserService();
+    updateCartItemCount();
 
     if (userService.getCurrentUser() != null) {
       adminPane.setVisible(userService.getCurrentUser().isAdmin());
@@ -69,6 +75,17 @@ public class MainLayoutController {
   @FXML
   public void handleSearch() {
     productController.searchProducts(searchField.getText());
+  }
+
+  public void updateCartItemCount() {
+    cartSize = CartService.getCartItems().size();
+    if (cartSize > 0) {
+      cartItemCountLabel.setText(String.valueOf(cartSize));
+      cartItemCountLabel.setVisible(true);
+    } else {
+      cartItemCountLabel.setText("0");
+      cartItemCountLabel.setVisible(false);
+    }
   }
 
   @FXML

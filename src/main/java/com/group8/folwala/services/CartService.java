@@ -5,6 +5,7 @@ import com.group8.folwala.models.CartItem;
 import com.group8.folwala.models.Product;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class CartService {
 
@@ -17,7 +18,8 @@ public class CartService {
       try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
         loadedCart = (Cart) ois.readObject();
       } catch (IOException | ClassNotFoundException e) {
-        System.out.println("No cart found or failed to load cart: " + e.getMessage());
+        System.out.println("No cart found or failed to load cart for user " + userPhone + ": " + e.getMessage());
+        e.printStackTrace();
       }
     }
     return loadedCart;
@@ -66,5 +68,27 @@ public class CartService {
     } catch (Exception e) {
       System.out.println("Failed to create cart files: " + e.getMessage());
     }
+  }
+
+  public static ArrayList<String> getCartItems() {
+    ArrayList<String> cartItems = new ArrayList<>();
+    File dir = new File(CART_FILE_PATH);
+    if (dir.exists()) {
+      for (File file : dir.listFiles()) {
+        if (!file.getName().endsWith(".cart")) {
+          continue;
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+          Cart cart = (Cart) ois.readObject();
+          for (CartItem item : cart.getCartItems()) {
+            cartItems.add(item.toString());
+          }
+        } catch (IOException | ClassNotFoundException e) {
+          System.out.println("Failed to get cart items from file: " + file.getName() + " - " + e.getMessage());
+          e.printStackTrace();
+        }
+      }
+    }
+    return cartItems;
   }
 }

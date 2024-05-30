@@ -25,9 +25,11 @@ public class ProductListController {
   @FXML
   private FlowPane productFlowPane;
 
-  ArrayList<Product> products;
+  private ArrayList<Product> products;
 
-  User currentUser;
+  private User currentUser;
+
+  private static MainLayoutController mainLayoutController;
 
   @FXML
   public void initialize() {
@@ -38,6 +40,10 @@ public class ProductListController {
 
     products = ProductService.getAllProducts();
     loadAllProducts();
+  }
+
+  public static void setMainLayoutController(MainLayoutController controller) {
+    mainLayoutController = controller;
   }
 
   public void loadAllProducts() {
@@ -126,11 +132,12 @@ public class ProductListController {
     });
 
     addToCartButton.setOnAction(e -> {
+
       int quantity = Integer.parseInt(quantityField.getText());
       if (quantity > 0) {
         CartService.addItemToCart(currentUser.getPhone(), product, quantity);
-        quantityField.setText("0"); // Reset after adding to cart
-        System.out.println(product.getName() + " added to cart with quantity " + quantity);
+        mainLayoutController.updateCartItemCount();
+        quantityField.setText("0");
       }
     });
 

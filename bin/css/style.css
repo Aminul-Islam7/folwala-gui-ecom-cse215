@@ -1,21 +1,38 @@
 * {
-	-fx-background-color: transparent;
+	-fx-main-green-color: #22423d;
+	-fx-main-yellow-color: #fbc108;
+	-fx-hover-yellow-color: #e0ac00;
+	-fx-main-light-color: #e0e0e0;
+	-fx-main-shadow-color: rgba(40, 63, 59, 0.2);
+	-fx-text-light-color: #505050;
+	-fx-text-dark-color: #22423d;
+	-fx-text-error-color: red;
+	-fx-text-error-light-color: #ff7777;
+	-fx-background-light-color: white;
+	-fx-background-auth-bg-color: rgba(255, 255, 255, 0.7);
+	-fx-background-error-color: #008200;
+	-fx-glyph-icon-hover-color: #142b27;
+	-fx-cartitem-counter-color: rgb(0, 140, 0);
 }
 
+/* Shadow */
 .shadow {
-	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 30, 0, 3, 2);
+	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
 }
+
+/* Text Fields */
 .text-field {
-	-fx-background-color: #e0e0e0;
-	-fx-text-fill: #505050;
+	-fx-background-color: -fx-main-light-color;
+	-fx-text-fill: -fx-text-light-color;
 	-fx-background-radius: 5;
 	-fx-padding: 7 10;
 	-fx-font-size: 16;
 }
 
+/* Buttons */
 .button {
-	-fx-background-color: #fbc108;
-	-fx-text-fill: #22423d;
+	-fx-background-color: -fx-main-yellow-color;
+	-fx-text-fill: -fx-main-green-color;
 	-fx-font-size: 16;
 	-fx-background-radius: 5;
 	-fx-padding: 7 15;
@@ -23,22 +40,23 @@
 }
 
 .button:hover {
-	-fx-background-color: #e0ac00;
+	-fx-background-color: -fx-hover-yellow-color;
 }
 
 .action-btn {
-	-fx-background-color: #22423d;
-	-fx-text-fill: #fbc108;
+	-fx-background-color: -fx-main-green-color;
+	-fx-text-fill: -fx-main-yellow-color;
 	-fx-font-size: 16;
 	-fx-font-weight: bold;
 }
 
 .action-btn:hover {
-	-fx-background-color: #142b27;
+	-fx-background-color: -fx-glyph-icon-hover-color;
 }
 
+/* Text Styles */
 .heading {
-	-fx-text-fill: #22423d !important;
+	-fx-text-fill: -fx-main-green-color !important;
 	-fx-font-size: 20 !important;
 	-fx-font-weight: bold !important;
 }
@@ -50,7 +68,7 @@
 
 .success-text {
 	-fx-text-fill: white;
-	-fx-background-color: #008200;
+	-fx-background-color: -fx-background-error-color;
 	-fx-font-size: 18;
 	-fx-font-weight: bold;
 	-fx-padding: 5 15;
@@ -58,30 +76,83 @@
 }
 
 .error-message {
-	-fx-text-fill: red !important;
+	-fx-text-fill: -fx-text-error-color !important;
 	-fx-font-size: 14 !important;
 }
 
 .error-message-light {
-	-fx-text-fill: #ff7777;
+	-fx-text-fill: -fx-text-error-light-color;
 	-fx-font-size: 14;
 }
 
-.thumb {
-	-fx-background-color: #22423d;
+/* Product Box */
+.product-box {
+	-fx-background-color: -fx-background-light-color;
 	-fx-background-radius: 10;
 	-fx-padding: 15;
-	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 30, 0, 3, 2);
+	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
+}
+
+.product-box .name {
+	-fx-text-fill: -fx-main-green-color;
+	-fx-font-size: 16;
+}
+
+.product-box .unit {
+	-fx-text-fill: -fx-text-light-color;
+	-fx-font-size: 12;
+}
+
+.product-box .price {
+	-fx-text-fill: -fx-main-green-color;
+	-fx-font-size: 18;
+	-fx-font-weight: bold;
+}
+
+.product-box .button .glyph-icon {
+	-fx-fill: -fx-glyph-icon-hover-color;
+}
+
+/* Inventory Item */
+.inventory-item {
+	-fx-background-color: -fx-background-light-color;
+	-fx-background-radius: 5;
+	-fx-padding: 10;
+	-fx-border-color: -fx-main-shadow-color;
+	-fx-border-width: 1;
+	-fx-border-radius: 5;
+}
+
+.inventory-item .label {
+	-fx-text-fill: -fx-main-green-color;
+	-fx-font-size: 14;
+}
+
+.inventory-item .button .glyph-icon {
+	-fx-fill: -fx-glyph-icon-hover-color;
+}
+
+.inventory-item .button:hover {
+	-fx-background-color: -fx-hover-yellow-color;
+}
+
+/* Cart Item Counter */
+.cartitem-counter {
+	-fx-background-color: -fx-main-green-color;
+	-fx-text-fill: -fx-main-yellow-color;
+	-fx-font-size: 16;
+	-fx-font-weight: bold;
+	-fx-background-radius: 100;
+	-fx-padding: 1 9;
 }
 
 /* Authentication */
-
 .auth-bg {
-	-fx-background-color: #22423d;
+	-fx-background-color: -fx-main-green-color;
 }
 
 .auth-bg .text-field {
-	-fx-background-color: rgba(255, 255, 255, 0.7);
+	-fx-background-color: -fx-background-auth-bg-color;
 	-fx-text-fill: #494949;
 	-fx-prompt-text-fill: #898989;
 	-fx-background-radius: 5;
@@ -100,7 +171,7 @@
 
 .auth-bg .prompt-button {
 	-fx-background-color: transparent;
-	-fx-text-fill: #fbc108;
+	-fx-text-fill: -fx-main-yellow-color;
 	-fx-font-size: 14;
 	-fx-font-weight: bold;
 }
@@ -124,27 +195,26 @@
 }
 
 .auth-bg .check-box:selected .mark {
-	-fx-background-color: #fbc108;
+	-fx-background-color: -fx-main-yellow-color;
 }
 
 /* Sidebar */
-
 .sidebar {
-	-fx-background-color: #fbc108;
-	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 15, 0, 5, 0);
+	-fx-background-color: -fx-main-yellow-color;
+	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 15, 0, 5, 0);
 }
 
 .admin-pane {
-	-fx-background-color: #fbc108;
+	-fx-background-color: -fx-main-yellow-color;
 }
 
 .menu-btn {
 	-fx-background-color: transparent;
-	-fx-text-fill: #22423d;
+	-fx-text-fill: -fx-main-green-color;
 }
 
 .menu-btn .glyph-icon {
-	-fx-fill: #22423d;
+	-fx-fill: -fx-main-green-color;
 	-fx-glyph-size: 30;
 	-fx-size: 30;
 }
@@ -157,34 +227,33 @@
 
 .menu-btn:hover {
 	-fx-background-color: transparent;
-	-fx-text-fill: #142b27;
+	-fx-text-fill: -fx-glyph-icon-hover-color;
 }
 
 .menu-btn:hover .glyph-icon {
-	-fx-fill: #142b27;
+	-fx-fill: -fx-glyph-icon-hover-color;
 }
 
 /* Header */
-
 .header {
-	-fx-background-color: #22423d;
-	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 15, 0, 0, 5);
+	-fx-background-color: -fx-main-green-color;
+	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 15, 0, 0, 5);
 }
 
 .nav-btn {
-	-fx-background-color: #fbc108;
-	-fx-text-fill: #22423d;
+	-fx-background-color: -fx-main-yellow-color;
+	-fx-text-fill: -fx-main-green-color;
 	-fx-font-size: 16;
 	-fx-background-radius: 100;
 	-fx-padding: 7 10;
 }
 
 .nav-btn:hover {
-	-fx-background-color: #e0ac00;
+	-fx-background-color: -fx-hover-yellow-color;
 }
 
 .nav-btn .glyph-icon {
-	-fx-fill: #22423d;
+	-fx-fill: -fx-main-green-color;
 }
 
 .scene-label {
@@ -193,11 +262,12 @@
 	-fx-font-weight: bold;
 }
 
+/* Forms */
 .form {
-	-fx-background-color: white;
+	-fx-background-color: -fx-background-light-color;
 	-fx-background-radius: 10;
 	-fx-padding: 25;
-	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 30, 0, 3, 2);
+	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
 }
 
 .form .label {
@@ -205,84 +275,40 @@
 	-fx-font-size: 16;
 }
 
+/* Choice Box */
 .choice-box {
-	-fx-background-color: #e0e0e0;
-	-fx-text-fill: #505050;
+	-fx-background-color: -fx-main-light-color;
+	-fx-text-fill: -fx-text-light-color;
 	-fx-background-radius: 5;
 	-fx-font-size: 16;
 }
 
 .choice-box .arrow {
-	-fx-background-color: #22423d;
+	-fx-background-color: -fx-main-green-color;
 }
 
 .choice-box .context-menu {
-	-fx-background-color: #e0e0e0;
+	-fx-background-color: -fx-main-light-color;
 	-fx-background-radius: 5;
-	-fx-text-fill: #505050;
+	-fx-text-fill: -fx-text-light-color;
 	-fx-font-size: 16;
 	-fx-pref-width: 250;
 }
 
 .choice-box .menu-item:focused {
-	-fx-background-color: #fbc108;
-	-fx-text-fill: #22423d;
+	-fx-background-color: -fx-main-yellow-color;
+	-fx-text-fill: -fx-main-green-color;
 }
 
+/* Panes */
 #productFlowPane,
 #inventoryFlowPane {
 	-fx-padding: 25;
 }
 
-.product-box {
-	-fx-background-color: white;
+.thumb {
+	-fx-background-color: -fx-main-green-color;
 	-fx-background-radius: 10;
 	-fx-padding: 15;
-	-fx-effect: dropshadow(three-pass-box, rgb(40, 63, 59, 0.2), 30, 0, 3, 2);
-}
-
-.product-box .name {
-	-fx-text-fill: #22423d;
-	-fx-font-size: 16;
-}
-
-.product-box .unit {
-	-fx-text-fill: #505050;
-	-fx-font-size: 12;
-}
-
-.product-box .price {
-	-fx-text-fill: #22423d;
-	-fx-font-size: 18;
-	-fx-font-weight: bold;
-}
-
-.product-box .button .glyph-icon {
-	-fx-fill: #142b27;
-}
-
-.inventory-item {
-	-fx-background-color: white;
-	-fx-background-radius: 5;
-	-fx-padding: 10;
-	-fx-border-color: rgb(34, 66, 61, 0.4);
-	-fx-border-width: 1;
-	-fx-border-radius: 5;
-}
-
-.inventory-item .label {
-	-fx-text-fill: #22423d;
-	-fx-font-size: 14;
-}
-
-.inventory-item .button .glyph-icon {
-	-fx-fill: #142b27;
-}
-
-.inventory-item .button:hover {
-	-fx-background-color: #e0ac00;
-}
-
-.footer {
-	-fx-background-color: #fbc108;
+	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
 }

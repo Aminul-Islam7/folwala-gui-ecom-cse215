@@ -1,5 +1,6 @@
 package com.group8.folwala.services;
 
+import com.group8.folwala.models.Cart;
 import com.group8.folwala.models.User;
 
 import java.io.*;
@@ -16,6 +17,7 @@ public class UserService {
     currentUser = loadSession();
   }
 
+  // Registers a new user with the given details and creates a cart for them
   public boolean registerUser(String name, String phone, String password, String address, boolean isAdmin) {
     if (getUserByPhone(phone) != null) {
       return false; // User with this phone number already exists
@@ -23,6 +25,7 @@ public class UserService {
     User newUser = new User(name, phone, password, address, isAdmin);
     users.add(newUser);
     saveUsers();
+    CartService.createCart(phone);
     return true;
   }
 
@@ -105,4 +108,5 @@ public class UserService {
       System.out.println("Failed to create files: " + e.getMessage());
     }
   }
+
 }
