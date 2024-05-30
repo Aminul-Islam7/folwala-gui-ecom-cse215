@@ -134,11 +134,6 @@ public class SceneController {
       authenticationStage.close();
     }
 
-    UserService userService = new UserService();
-    if (userService.getCurrentUser().isAdmin()) {
-
-    }
-
     currentStage = mainStage;
     mainStage.show();
   }

@@ -22,7 +22,6 @@ public class Main extends Application {
             SceneController.showMainStage();
         else
             SceneController.showAuthenticationStage();
-
     }
 
     public static void main(String[] args) {

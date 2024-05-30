@@ -29,7 +29,7 @@ public class InventoryController {
   @FXML
   private TextField searchField;
 
-  ArrayList<Product> products;
+  private ArrayList<Product> products;
 
   private static EditProductController editProductController;
 
@@ -60,11 +60,10 @@ public class InventoryController {
   }
 
   private HBox createProductBox(Product product) {
-    HBox productBox = new HBox();
-    productBox.setAlignment(javafx.geometry.Pos.CENTER);
+    HBox productBox = new HBox(6);
     productBox.setPrefWidth(390);
+    productBox.setAlignment(javafx.geometry.Pos.CENTER);
     // productBox.setPrefHeight(65);
-    productBox.setSpacing(6);
     productBox.getStyleClass().add("inventory-item");
 
     URL imageURL = getClass().getResource("/images/products/" + product.getImage());

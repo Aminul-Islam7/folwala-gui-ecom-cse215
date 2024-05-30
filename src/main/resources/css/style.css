@@ -1,23 +1,24 @@
 * {
-	-fx-main-green-color: #22423d;
-	-fx-main-yellow-color: #fbc108;
-	-fx-hover-yellow-color: #e0ac00;
+	-fx-green-color: #22423d;
+	-fx-darker-green-color: #142b27;
+	-fx-lighter-green-color: #008200;
+	-fx-yellow-color: #fbc108;
+	-fx-darker-yellow-color: #e0ac00;
+	-fx-lighter-yellow-color: #ffdb58;
 	-fx-main-light-color: #e0e0e0;
-	-fx-main-shadow-color: rgba(40, 63, 59, 0.2);
+	-fx-shadow-color: rgba(40, 63, 59, 0.2);
 	-fx-text-light-color: #505050;
-	-fx-text-dark-color: #22423d;
-	-fx-text-error-color: red;
+	-fx-text-error-color: #ff0000;
 	-fx-text-error-light-color: #ff7777;
-	-fx-background-light-color: white;
-	-fx-background-auth-bg-color: rgba(255, 255, 255, 0.7);
-	-fx-background-error-color: #008200;
-	-fx-glyph-icon-hover-color: #142b27;
-	-fx-cartitem-counter-color: rgb(0, 140, 0);
+	-fx-background-light-color: #ffffff;
+	-fx-transparent-textfield-color: rgba(255, 255, 255, 0.7);
+
+	-fx-background-color: transparent;
 }
 
 /* Shadow */
 .shadow {
-	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
+	-fx-effect: dropshadow(three-pass-box, -fx-shadow-color, 30, 0, 3, 2);
 }
 
 /* Text Fields */
@@ -31,8 +32,8 @@
 
 /* Buttons */
 .button {
-	-fx-background-color: -fx-main-yellow-color;
-	-fx-text-fill: -fx-main-green-color;
+	-fx-background-color: -fx-yellow-color;
+	-fx-text-fill: -fx-green-color;
 	-fx-font-size: 16;
 	-fx-background-radius: 5;
 	-fx-padding: 7 15;
@@ -40,23 +41,23 @@
 }
 
 .button:hover {
-	-fx-background-color: -fx-hover-yellow-color;
+	-fx-background-color: -fx-darker-yellow-color;
 }
 
 .action-btn {
-	-fx-background-color: -fx-main-green-color;
-	-fx-text-fill: -fx-main-yellow-color;
+	-fx-background-color: -fx-green-color;
+	-fx-text-fill: -fx-yellow-color;
 	-fx-font-size: 16;
 	-fx-font-weight: bold;
 }
 
 .action-btn:hover {
-	-fx-background-color: -fx-glyph-icon-hover-color;
+	-fx-background-color: -fx-darker-green-color;
 }
 
 /* Text Styles */
 .heading {
-	-fx-text-fill: -fx-main-green-color !important;
+	-fx-text-fill: -fx-green-color !important;
 	-fx-font-size: 20 !important;
 	-fx-font-weight: bold !important;
 }
@@ -68,7 +69,7 @@
 
 .success-text {
 	-fx-text-fill: white;
-	-fx-background-color: -fx-background-error-color;
+	-fx-background-color: -fx-lighter-green-color;
 	-fx-font-size: 18;
 	-fx-font-weight: bold;
 	-fx-padding: 5 15;
@@ -90,27 +91,27 @@
 	-fx-background-color: -fx-background-light-color;
 	-fx-background-radius: 10;
 	-fx-padding: 15;
-	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
+	-fx-effect: dropshadow(three-pass-box, -fx-shadow-color, 30, 0, 3, 2);
 }
 
 .product-box .name {
-	-fx-text-fill: -fx-main-green-color;
-	-fx-font-size: 16;
+	-fx-text-fill: -fx-green-color;
+	-fx-font-size: 18;
 }
 
 .product-box .unit {
 	-fx-text-fill: -fx-text-light-color;
-	-fx-font-size: 12;
+	-fx-font-size: 14;
 }
 
 .product-box .price {
-	-fx-text-fill: -fx-main-green-color;
+	-fx-text-fill: -fx-green-color;
 	-fx-font-size: 18;
 	-fx-font-weight: bold;
 }
 
 .product-box .button .glyph-icon {
-	-fx-fill: -fx-glyph-icon-hover-color;
+	-fx-fill: -fx-darker-green-color;
 }
 
 /* Inventory Item */
@@ -118,41 +119,108 @@
 	-fx-background-color: -fx-background-light-color;
 	-fx-background-radius: 5;
 	-fx-padding: 10;
-	-fx-border-color: -fx-main-shadow-color;
+	-fx-border-color: -fx-shadow-color;
 	-fx-border-width: 1;
 	-fx-border-radius: 5;
 }
 
 .inventory-item .label {
-	-fx-text-fill: -fx-main-green-color;
+	-fx-text-fill: -fx-green-color;
 	-fx-font-size: 14;
 }
 
 .inventory-item .button .glyph-icon {
-	-fx-fill: -fx-glyph-icon-hover-color;
+	-fx-fill: -fx-darker-green-color;
 }
 
 .inventory-item .button:hover {
-	-fx-background-color: -fx-hover-yellow-color;
+	-fx-background-color: -fx-darker-yellow-color;
 }
 
-/* Cart Item Counter */
+/* Cart */
 .cartitem-counter {
-	-fx-background-color: -fx-main-green-color;
-	-fx-text-fill: -fx-main-yellow-color;
+	-fx-background-color: -fx-green-color;
+	-fx-text-fill: -fx-yellow-color;
 	-fx-font-size: 16;
 	-fx-font-weight: bold;
 	-fx-background-radius: 100;
 	-fx-padding: 1 9;
 }
 
+.cartitem-box {
+	-fx-background-color: transparent;
+	-fx-background-radius: 10;
+	-fx-padding: 15;
+	-fx-border-color: -fx-shadow-color;
+	-fx-border-width: 1;
+	-fx-border-radius: 5;
+}
+
+.cartitem-box .name,
+.cartitem-box .item-total {
+	-fx-text-fill: -fx-text-light-color;
+	-fx-font-size: 16;
+	-fx-font-weight: bold;
+}
+
+.cartitem-box .unit-price {
+	-fx-text-fill: -fx-text-light-color;
+	-fx-font-size: 14;
+}
+
+.cartitem-box .button {
+	-fx-background-color: -fx-yellow-color;
+	-fx-padding: 5 10;
+	-fx-font-size: 14;
+}
+
+.cartitem-box .quantity {
+	-fx-font-size: 14;
+	-fx-background-color: -fx-main-light-color;
+	-fx-padding: 5 12;
+	-fx-text-fill: -fx-text-light-color;
+	-fx-background-radius: 5;
+}
+
+.order-summary {
+	-fx-background-color: -fx-main-light-color;
+	-fx-padding: 25;
+}
+
+.order-summary .label,
+.order-summary .radio-button {
+	-fx-text-fill: -fx-green-color;
+	-fx-font-size: 16;
+}
+
+.order-summary .radio-button .radio {
+	-fx-background-color: -fx-main-light-color;
+	-fx-border-color: -fx-green-color;
+	-fx-border-radius: 100;
+	-fx-padding: 5;
+	-fx-background-radius: 100;
+}
+
+.order-summary .radio-button:selected .radio .dot {
+	-fx-background-color: -fx-green-color;
+	-fx-text-fill: -fx-yellow-color;
+}
+
+.order-summary .text-area {
+	-fx-background-color: -fx-transparent-textfield-color;
+	-fx-text-fill: -fx-text-light-color;
+	-fx-font-size: 16;
+	-fx-background-radius: 5;
+	-fx-padding: 7 10;
+}
+
 /* Authentication */
 .auth-bg {
-	-fx-background-color: -fx-main-green-color;
+	-fx-background-color: -fx-green-color;
 }
 
 .auth-bg .text-field {
-	-fx-background-color: -fx-background-auth-bg-color;
+	-fx-background-color: -fx-transparent-textfield-color;
 	-fx-text-fill: #494949;
 	-fx-prompt-text-fill: #898989;
 	-fx-background-radius: 5;
@@ -171,7 +239,7 @@
 
 .auth-bg .prompt-button {
 	-fx-background-color: transparent;
-	-fx-text-fill: -fx-main-yellow-color;
+	-fx-text-fill: -fx-yellow-color;
 	-fx-font-size: 14;
 	-fx-font-weight: bold;
 }
@@ -195,26 +263,26 @@
 }
 
 .auth-bg .check-box:selected .mark {
-	-fx-background-color: -fx-main-yellow-color;
+	-fx-background-color: -fx-yellow-color;
 }
 
 /* Sidebar */
 .sidebar {
-	-fx-background-color: -fx-main-yellow-color;
-	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 15, 0, 5, 0);
+	-fx-background-color: -fx-yellow-color;
+	-fx-effect: dropshadow(three-pass-box, -fx-shadow-color, 15, 0, 5, 0);
 }
 
 .admin-pane {
-	-fx-background-color: -fx-main-yellow-color;
+	-fx-background-color: -fx-yellow-color;
 }
 
 .menu-btn {
 	-fx-background-color: transparent;
-	-fx-text-fill: -fx-main-green-color;
+	-fx-text-fill: -fx-green-color;
 }
 
 .menu-btn .glyph-icon {
-	-fx-fill: -fx-main-green-color;
+	-fx-fill: -fx-green-color;
 	-fx-glyph-size: 30;
 	-fx-size: 30;
 }
@@ -227,33 +295,33 @@
 
 .menu-btn:hover {
 	-fx-background-color: transparent;
-	-fx-text-fill: -fx-glyph-icon-hover-color;
+	-fx-text-fill: -fx-darker-green-color;
 }
 
 .menu-btn:hover .glyph-icon {
-	-fx-fill: -fx-glyph-icon-hover-color;
+	-fx-fill: -fx-darker-green-color;
 }
 
 /* Header */
 .header {
-	-fx-background-color: -fx-main-green-color;
-	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 15, 0, 0, 5);
+	-fx-background-color: -fx-green-color;
+	-fx-effect: dropshadow(three-pass-box, -fx-shadow-color, 15, 0, 0, 5);
 }
 
 .nav-btn {
-	-fx-background-color: -fx-main-yellow-color;
-	-fx-text-fill: -fx-main-green-color;
+	-fx-background-color: -fx-yellow-color;
+	-fx-text-fill: -fx-green-color;
 	-fx-font-size: 16;
 	-fx-background-radius: 100;
 	-fx-padding: 7 10;
 }
 
 .nav-btn:hover {
-	-fx-background-color: -fx-hover-yellow-color;
+	-fx-background-color: -fx-darker-yellow-color;
 }
 
 .nav-btn .glyph-icon {
-	-fx-fill: -fx-main-green-color;
+	-fx-fill: -fx-green-color;
 }
 
 .scene-label {
@@ -267,7 +335,7 @@
 	-fx-background-color: -fx-background-light-color;
 	-fx-background-radius: 10;
 	-fx-padding: 25;
-	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
+	-fx-effect: dropshadow(three-pass-box, -fx-shadow-color, 30, 0, 3, 2);
 }
 
 .form .label {
@@ -284,7 +352,7 @@
 }
 
 .choice-box .arrow {
-	-fx-background-color: -fx-main-green-color;
+	-fx-background-color: -fx-green-color;
 }
 
 .choice-box .context-menu {
@@ -296,19 +364,20 @@
 }
 
 .choice-box .menu-item:focused {
-	-fx-background-color: -fx-main-yellow-color;
-	-fx-text-fill: -fx-main-green-color;
+	-fx-background-color: -fx-yellow-color;
+	-fx-text-fill: -fx-green-color;
 }
 
 /* Panes */
 #productFlowPane,
-#inventoryFlowPane {
+#inventoryFlowPane,
+#cartFlowPane {
 	-fx-padding: 25;
 }
 
 .thumb {
-	-fx-background-color: -fx-main-green-color;
+	-fx-background-color: -fx-green-color;
 	-fx-background-radius: 10;
 	-fx-padding: 15;
-	-fx-effect: dropshadow(three-pass-box, -fx-main-shadow-color, 30, 0, 3, 2);
+	-fx-effect: dropshadow(three-pass-box, -fx-shadow-color, 30, 0, 3, 2);
 }

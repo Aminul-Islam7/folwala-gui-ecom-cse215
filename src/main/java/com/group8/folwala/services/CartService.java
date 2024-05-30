@@ -26,16 +26,12 @@ public class CartService {
   }
 
   public static void saveCart(Cart cart) {
-    File dir = new File(CART_FILE_PATH);
-    if (!dir.exists()) {
-      dir.mkdirs();
-    }
-
     try (ObjectOutputStream oos = new ObjectOutputStream(
         new FileOutputStream(CART_FILE_PATH + cart.getUserPhone() + ".cart"))) {
       oos.writeObject(cart);
     } catch (IOException e) {
-      System.out.println("Failed to save cart: " + e.getMessage());
+      System.out.println("Failed to save cart for user " + cart.getUserPhone() + ": " + e.getMessage());
+      e.printStackTrace();
     }
   }
 
@@ -70,8 +66,8 @@ public class CartService {
     }
   }
 
-  public static ArrayList<String> getCartItems() {
-    ArrayList<String> cartItems = new ArrayList<>();
+  public static ArrayList<CartItem> getCartItems() {
+    ArrayList<CartItem> cartItems = new ArrayList<>();
     File dir = new File(CART_FILE_PATH);
     if (dir.exists()) {
       for (File file : dir.listFiles()) {
@@ -81,7 +77,7 @@ public class CartService {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
           Cart cart = (Cart) ois.readObject();
           for (CartItem item : cart.getCartItems()) {
-            cartItems.add(item.toString());
+            cartItems.add(item);
           }
         } catch (IOException | ClassNotFoundException e) {
           System.out.println("Failed to get cart items from file: " + file.getName() + " - " + e.getMessage());
