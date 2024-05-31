@@ -1,0 +1,490 @@
+@startuml
+
+' Define the Cart class
+class Cart {
+    -String userPhone
+    -ArrayList<CartItem> cartItems
+    +Cart(String userPhone)
+    +Cart(String userPhone, ArrayList<CartItem> cartItems)
+    +String getUserPhone()
+    +ArrayList<CartItem> getCartItems()
+    +void addCartItem(CartItem cartItem)
+    +double getTotalPrice()
+    +String toString()
+}
+
+' Define the CartItem class
+class CartItem {
+    -Product product
+    -int quantity
+    +CartItem(Product product, int quantity)
+    +Product getProduct()
+    +void setProduct(Product product)
+    +int getQuantity()
+    +void setQuantity(int quantity)
+    +double getTotalPrice()
+    +String toString()
+}
+
+' Define the Order class
+class Order {
+    -int orderID
+    -User user
+    -ArrayList<OrderItem> orderItems
+    -boolean isDelivered
+    -String paymentMethod
+    -String orderDate
+    -String shippingAddress
+    +Order(int orderID, User user, ArrayList<OrderItem> orderItems, String paymentMethod, String shippingAddress)
+    +int getOrderID()
+    +User getUser()
+    +ArrayList<OrderItem> getOrderItems()
+    +String getPaymentMethod()
+    +String getOrderDate()
+    +String getShippingAddress()
+    +void addOrderItem(OrderItem orderItem)
+    +double getTotalPrice()
+    +boolean isDelivered()
+    +void setDelivered(boolean delivered)
+    +void setPaymentMethod(String paymentMethod)
+    +String toString()
+}
+
+' Define the OrderItem class
+class OrderItem {
+    -Product product
+    -int quantity
+    +OrderItem(Product product, int quantity)
+    +Product getProduct()
+    +void setProduct(Product product)
+    +int getQuantity()
+    +void setQuantity(int quantity)
+    +double getTotalPrice()
+    +String toString()
+}
+
+' Define the Product class
+class Product {
+    -int productID
+    -String name
+    -String unit
+    -double price
+    -String category
+    -String image
+    +Product(int productID, String name, String unit, double price, String category, String image)
+    +int getProductID()
+    +String getName()
+    +String getUnit()
+    +double getPrice()
+    +String getCategory()
+    +String getImage()
+    +void setProductID(int productID)
+    +void setName(String name)
+    +void setUnit(String unit)
+    +void setPrice(double price)
+    +void setCategory(String category)
+    +void setImage(String image)
+    +String toString()
+}
+
+' Define the User class
+class User {
+    -String name
+    -String phone
+    -String email
+    -String password
+    -String address
+    -boolean isAdmin
+    +User(String name, String phone, String password, String address, boolean isAdmin)
+    +String getName()
+    +String getPhone()
+    +String getEmail()
+    +String getAddress()
+    +boolean isAdmin()
+    +boolean validatePassword(String password)
+}
+
+' Define the CartService class
+class CartService {
+    +static Cart loadCart(String userPhone)
+    +static void saveCart(Cart cart)
+    +static void addItemToCart(String userPhone, Product product, int quantity)
+    +static void clearCart(String userPhone)
+    +static void createCart(String userPhone)
+    +static void createFiles()
+    +static ArrayList<CartItem> getCartItems(String userPhone)
+    +static int getCartItemCount(String userPhone)
+    +static double getCartTotalPrice(String userPhone)
+    +static ArrayList<OrderItem> convertToOrderItems(ArrayList<CartItem> cartItems)
+}
+
+' Define the OrderService class
+class OrderService {
+    +static ArrayList<Order> loadOrders()
+    +static void saveOrders(ArrayList<Order> orders)
+    +static void placeOrder(User user, ArrayList<OrderItem> orderItems, String paymentMethod, String shippingAddress)
+    +static void createFiles()
+    +static ArrayList<Order> getOrders(String userPhone)
+    +static ArrayList<Order> getOrders()
+    +static double getOrdersTotalPrice()
+    +static int getOrdersCount()
+    +static int getDeliveredOrdersCount()
+    +static int getPendingOrdersCount()
+    +static int generateOrderID()
+}
+
+' Define the ProductService class
+class ProductService {
+    +static ArrayList<Product> getProductsByCategory(String category)
+    +static ArrayList<Product> getAllProducts()
+    +static void saveProduct(Product product)
+    +static void deleteProduct(Product product)
+    +static int generateProductID()
+    +static void createFiles()
+    +static void exportProducts()
+    +static void updateProduct(Product product)
+}
+
+' Define the UserService class
+class UserService {
+    -ArrayList<User> users
+    -User currentUser
+    -static final String USER_FILE_PATH
+    -static final String SESSION_FILE_PATH
+    +UserService()
+    +boolean registerUser(String name, String phone, String password, String address, boolean isAdmin)
+    +User loginUser(String phone, String password)
+    +void logoutUser()
+    +User getCurrentUser()
+    -User getUserByPhone(String phone)
+    -ArrayList<User> loadUsers()
+    -void saveUsers()
+    -void saveSession()
+    -User loadSession()
+    -void clearSession()
+    +void createFiles()
+    +void updateUser(User user, String name, String address, String password)
+}
+
+
+' Define the AddProductsSuccessController class
+class AddProductsSuccessController {
+    -Label categoryLabel
+    -Label nameLabel
+    -Label priceLabel
+    -Label unitLabel
+    -ImageView imageView
+    +void initialize()
+    +void setProductDetails(Product product)
+    +void setImageURL(String string)
+    +void visitInventoryScene()
+}
+
+' Define the AddProductsController class
+class AddProductsController {
+    -Button chooseImageButton
+    -Button chooseCSVButton
+    -TextField nameField
+    -TextField priceField
+    -TextField unitField
+    -ImageView productImageView
+    -ImageView loaderImageView
+    -Label errorLabel1
+    -Label errorLabel2
+    -ChoiceBox<String> categoryChoiceBox
+    -File selectedImageFile
+    -File destFile
+    -File selectedCSVFile
+    -static AddProductsSuccessController addProductsSuccessController
+    +void initialize()
+    +static void setAddProductsSuccessController(AddProductsSuccessController addProductsSuccessController)
+    +void handleUploadImage()
+    +void handleUploadCSV()
+    +void handleBulkUploadProducts()
+    +void handleAddProduct()
+}
+
+' Define the AlertController class
+class AlertController {
+  -Image icon
+  +showAlert(String title, String message)
+  +showError(String title, String message)
+  +showWarning(String title, String message)
+  +showConfirmation(String title, String message)
+  +showConfirmation(String title, String message, Runnable callback)
+  +showInformation(String title, String message)
+}
+
+' Define the AuthenticationController class
+class AuthenticationController {
+    -TextField nameField
+    -TextField phoneField
+    -TextField addressField
+    -PasswordField passwordField
+    -PasswordField adminPasswordField
+    -Button registerButton
+    -Button loginButton
+    -Label errorLabel
+    -CheckBox isAdminCheckbox
+    -UserService userService
+    -static MainLayoutController mainLayoutController
+    +void initialize()
+    +void handleRegister()
+    +void handleLogin(ActionEvent event)
+    +void switchToRegisterScene(ActionEvent event)
+    +void switchToLoginScene(ActionEvent event)
+    +void showAdminPasswordField(ActionEvent event)
+    +static void setMainLayoutController(MainLayoutController controller)
+}
+
+' Define the CartController class
+class CartController {
+    -FlowPane cartFlowPane
+    -Label nameLabel
+    -Label quantityLabel
+    -Label unitPriceLabel
+    -Label itemsLabel
+    -Label subtotalLabel
+    -Label deliveryChargeLabel
+    -Label totalLabel
+    -TextArea addressTextArea
+    -Button placeOrderButton
+    -RadioButton CODRadioButton
+    -RadioButton cardRadioButton
+    -ArrayList<CartItem> cartItems
+    -UserService userService
+    -static MainLayoutController mainLayoutController
+    +void initialize()
+    +void loadCartItems()
+    +HBox createCartItemBox(CartItem cartItem)
+    +void updateOrderSummary()
+    +void handleEmptyCart()
+    +void handlePlaceOrder()
+    +static void setMainLayoutController(MainLayoutController mainLayoutController)
+}
+
+' Define the EditProductController class
+class EditProductController {
+    -ChoiceBox<String> categoryChoiceBox
+    -Label errorLabel
+    -TextField nameField
+    -TextField priceField
+    -TextField unitField
+    -ImageView productImageView
+    -Button changeImageButton
+    -File selectedImageFile
+    -File destFile
+    -Product product
+    -static InventoryController inventoryController
+    -static final String[] categories
+    +void initialize()
+    +static void setInventoryController(InventoryController inventoryController)
+    +void handleUploadImage()
+    +void setProduct(Product product)
+    +void handleSaveProduct(ActionEvent event)
+    +void handleCancel(ActionEvent event)
+}
+
+' Define the OrderHistoryController class
+class OrderHistoryController {
+    -FlowPane orderFlowPane
+    -ArrayList<Order> orders
+    -UserService userService
+    +void initialize()
+    +void loadOrders()
+    +HBox createOrderBox(Order order)
+    +VBox createOrderLeftBox(Order order)
+    +VBox createOrderRightBox(Order order)
+}
+
+
+' Define the OrdersController class
+class OrdersController {
+    -FlowPane orderFlowPane
+    -ArrayList<Order> orders
+    -static OrderService orderService
+    -static UserService userService
+    +void initialize()
+    +void loadOrders()
+    +HBox createOrderBox(Order order)
+    +VBox createOrderLeftBox(Order order)
+    +VBox createOrderRightBox(Order order)
+}
+
+
+' Define the MainLayoutController class
+class MainLayoutController {
+    -AnchorPane contentPane
+    -AnchorPane adminPane
+    -Button backButton
+    -Button forwardButton
+    -Button cartButton
+    -Label sceneLabel
+    -Label cartItemCountLabel
+    -TextField searchField
+    -int cartSize
+    -static ProductListController productController
+    -UserService userService
+    +void initialize()
+    +void setSceneLabel(String label)
+    +void goBack(ActionEvent e)
+    +void goForward(ActionEvent e)
+    +void updateNavButtonsVisibility()
+    +void logoutUser()
+    +void handleSearch()
+    +void updateCartItemCount()
+    +void loadAllProducts()
+    +void loadFleshyFruits()
+    +void loadDryFruits()
+    +void loadFruitSeeds()
+    +void loadFruitJuice()
+    +void loadVegetables()
+    +void visitHomeScene()
+    +void visitCartScene()
+    +void visitAddProductsScene()
+    +void visitInventoryScene()
+    +void visitOrderHistoryScene()
+    +void visitOrdersScene()
+    +void visitProfileScene()
+    +static void setProductController(ProductListController productController)
+}
+
+
+' Define the InventoryController class
+class InventoryController {
+    -FlowPane inventoryFlowPane
+    -Label totalProductsLabel
+    -TextField searchField
+    -ArrayList<Product> products
+    -static EditProductController editProductController
+    +void initialize()
+    +static void setProductController(EditProductController editProductController)
+    +void refreshProducts()
+    +void loadAllProducts()
+    +HBox createProductBox(Product product)
+    +void visitAddProductsScene()
+    +void searchProducts()
+    +void exportProducts()
+}
+
+' Define the SceneController class
+class SceneController {
+    -static Stage authenticationStage
+    -static Stage mainStage
+    -static Stage currentStage
+    -static Stage secondaryStage
+    -static AnchorPane contentPane
+    -static ArrayList<String> viewList
+    -static ArrayList<String> visitedViewList
+    -static HashMap<String, String> sceneLabels
+    -static MainLayoutController mainLayoutController
+    +static Stage getStage()
+    +static void setContentPane(AnchorPane contentPane)
+    +static void setMainLayoutController(MainLayoutController controller)
+    +static void back()
+    +static void forward()
+    +static String getCurrentView()
+    +static void setScene(String fxmlFile, String sceneLabel)
+    +static void loadScene(String fxmlFile, String sceneLabel)
+    +static void setStages()
+    +static void showAuthenticationStage()
+    +static void showMainStage()
+    +static void switchToScene(String string)
+    +static void showProductEditStage()
+    +static void closeSecondaryStage()
+}
+
+' Define the ProductListController class
+class ProductListController {
+    -FlowPane productFlowPane
+    -ArrayList<Product> products
+    -User currentUser
+    -static MainLayoutController mainLayoutController
+    +void initialize()
+    +static void setMainLayoutController(MainLayoutController controller)
+    +void loadAllProducts()
+    +void getProductsByCategory(String category)
+    +VBox createProductBox(Product product)
+    +void searchProducts(String query)
+}
+
+' Define the PaymentController class
+class PaymentController {
+    -TextField monthField
+    -TextField nameField
+    -TextField numberField
+    -TextField postalCodeField
+    -TextField securityCodeField
+    -TextField yearField
+    -Label errorLabel
+    -static MainLayoutController mainLayoutController
+    +static void setMainLayoutController(MainLayoutController mainLayoutController)
+    +void visitOrderHistoryScene()
+}
+
+
+' Define the ProfileController class
+class ProfileController {
+    -TextField nameField
+    -TextField phoneField
+    -PasswordField passwordField
+    -TextArea addressField
+    -Label errorLabel
+    -Button updateProfileButton
+    -UserService userService
+    +void initialize()
+    +void handleUpdateProfile(ActionEvent event)
+}
+
+
+' Define the Main class
+class Main {
+    +void start(Stage primaryStage)
+    +static void main(String[] args)
+}
+
+
+
+' Define relationships
+Cart *-- CartItem : contains
+Order *-- OrderItem : contains
+CartItem *-- Product : references
+OrderItem *-- Product : references
+Order *-- User : references
+CartService *-- Cart
+CartService *-- CartItem
+CartService *-- OrderItem
+CartService *-- Product
+OrderService *-- Order
+OrderService *-- OrderItem
+OrderService *-- User
+ProductService *-- Product
+UserService *-- User
+UserService *-- Cart
+UserService *-- CartService : uses
+
+AuthenticationController *-- UserService : uses
+AuthenticationController *-- MainLayoutController : initializes
+CartController *-- CartService : uses
+CartController *-- MainLayoutController : initializes
+CartController *-- UserService : uses
+EditProductController *-- ProductService : uses
+EditProductController *-- InventoryController : initializes
+OrderHistoryController *-- UserService : uses
+OrderHistoryController *-- OrderService : uses
+OrdersController *-- OrderService : uses
+OrdersController *-- UserService : uses
+MainLayoutController *-- UserService : uses
+MainLayoutController *-- ProductListController : uses
+MainLayoutController *-- SceneController : uses
+InventoryController *-- ProductService : uses
+InventoryController *-- EditProductController : initializes
+SceneController *-- MainLayoutController : initializes
+SceneController *-- Stage : uses
+ProductListController *-- ProductService : uses
+ProductListController *-- UserService : uses
+PaymentController *-- MainLayoutController : initializes
+Main *-- UserService : uses
+Main *-- SceneController : uses
+
+@enduml
