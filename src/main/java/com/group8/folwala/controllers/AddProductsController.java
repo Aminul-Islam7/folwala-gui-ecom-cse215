@@ -163,6 +163,13 @@ public class AddProductsController {
       return;
     }
 
+    try {
+      Double.parseDouble(price);
+    } catch (NumberFormatException e) {
+      errorLabel1.setText("Price must be a number");
+      return;
+    }
+
     if (selectedImageFile == null) {
       errorLabel1.setText("Please upload an image");
       return;

@@ -1,6 +1,5 @@
 package com.group8.folwala.controllers;
 
-import com.group8.folwala.CustomUtils;
 import com.group8.folwala.services.CartService;
 import com.group8.folwala.services.UserService;
 
