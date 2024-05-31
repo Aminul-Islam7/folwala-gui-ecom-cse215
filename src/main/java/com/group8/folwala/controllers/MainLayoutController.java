@@ -172,4 +172,9 @@ public class MainLayoutController {
     SceneController.setScene("Orders.fxml", "Orders");
   }
 
+  @FXML
+  public void visitProfileScene() {
+    SceneController.setScene("Profile.fxml", "Profile");
+  }
+
 }

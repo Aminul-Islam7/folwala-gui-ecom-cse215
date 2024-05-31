@@ -38,6 +38,18 @@ public class User implements Serializable {
         return isAdmin;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public boolean validatePassword(String password) {
         return this.password.equals(password);
     }

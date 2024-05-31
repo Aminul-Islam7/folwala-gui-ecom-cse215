@@ -22,7 +22,8 @@
 }
 
 /* Text Fields */
-.text-field {
+.text-field,
+.text-area {
 	-fx-background-color: -fx-main-light-color;
 	-fx-text-fill: -fx-text-light-color;
 	-fx-background-radius: 5;

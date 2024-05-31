@@ -108,4 +108,16 @@ public class UserService {
     }
   }
 
+  public void updateUser(User user, String name, String address, String password) {
+    for (User u : users) {
+      if (u.getPhone().equals(user.getPhone())) {
+        u.setName(name);
+        u.setAddress(address);
+        u.setPassword(password);
+        saveUsers();
+        break;
+      }
+    }
+  }
+
 }

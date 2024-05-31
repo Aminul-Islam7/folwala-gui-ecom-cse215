@@ -85,7 +85,7 @@
                               <FontAwesomeIcon glyphName="HISTORY" size="32" />
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" styleClass="menu-btn" text="Profile">
+                        <Button mnemonicParsing="false" onAction="#visitProfileScene" styleClass="menu-btn" text="Profile">
                            <graphic>
                               <FontAwesomeIcon glyphName="USER" size="34" />
                            </graphic>
