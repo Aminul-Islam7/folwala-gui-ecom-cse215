@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.group8.folwala.controllers.SceneController;
 import com.group8.folwala.models.User;
-import com.group8.folwala.services.ProductService;
 import com.group8.folwala.services.UserService;
 
 import javafx.application.Application;

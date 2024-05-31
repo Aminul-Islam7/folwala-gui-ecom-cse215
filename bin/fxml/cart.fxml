@@ -77,7 +77,7 @@
                      <children>
                         <Label fx:id="itemsLabel" text="4" />
                         <Label fx:id="subtotalLabel" text="৳ 1055" />
-                        <Label text="৳ 50" />
+                        <Label fx:id="deliveryChargeLabel" text="৳ 50" />
                         <Label fx:id="totalLabel" styleClass="heading" text="৳ 1105" />
                      </children>
                   </VBox>

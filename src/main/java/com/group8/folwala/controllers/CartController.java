@@ -25,7 +25,7 @@ public class CartController {
   private FlowPane cartFlowPane;
 
   @FXML
-  private Label nameLabel, quantityLabel, unitPriceLabel, itemsLabel, subtotalLabel, totalLabel;
+  private Label nameLabel, quantityLabel, unitPriceLabel, itemsLabel, subtotalLabel, deliveryChargeLabel, totalLabel;
 
   @FXML
   private TextArea addressTextArea;
@@ -148,15 +148,16 @@ public class CartController {
   }
 
   public void updateOrderSummary() {
-    double total = 0;
-    int items = 0;
-    for (CartItem cartItem : cartItems) {
-      total += cartItem.getProduct().getPrice() * cartItem.getQuantity();
-      items += cartItem.getQuantity();
-    }
+    double total = CartService.getCartTotalPrice(userService.getCurrentUser().getPhone());
+    int items = CartService.getCartItemCount(userService.getCurrentUser().getPhone());
+
     itemsLabel.setText(String.valueOf(items));
     subtotalLabel.setText("৳ " + (int) total);
-    totalLabel.setText("৳ " + ((int) total + 50));
+    int deliveryCharge = 50;
+    if (items < 1)
+      deliveryCharge = 0;
+    deliveryChargeLabel.setText("৳ " + deliveryCharge);
+    totalLabel.setText("৳ " + ((int) total + deliveryCharge));
 
     addressTextArea.setText(userService.getCurrentUser().getAddress());
   }

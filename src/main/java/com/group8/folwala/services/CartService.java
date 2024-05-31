@@ -42,12 +42,6 @@ public class CartService {
     saveCart(cart);
   }
 
-  public static void removeItemFromCart(String userPhone, int productId) {
-    Cart cart = loadCart(userPhone);
-    cart.removeCartItem(productId);
-    saveCart(cart);
-  }
-
   public static void clearCart(String userPhone) {
     Cart cart = new Cart(userPhone);
     saveCart(cart);
@@ -68,5 +62,23 @@ public class CartService {
 
   public static ArrayList<CartItem> getCartItems(String userPhone) {
     return loadCart(userPhone).getCartItems();
+  }
+
+  public static int getCartItemCount(String userPhone) {
+    ArrayList<CartItem> cartItems = getCartItems(userPhone);
+    int count = 0;
+    for (CartItem cartItem : cartItems) {
+      count += cartItem.getQuantity();
+    }
+    return count;
+  }
+
+  public static double getCartTotalPrice(String userPhone) {
+    ArrayList<CartItem> cartItems = getCartItems(userPhone);
+    double total = 0;
+    for (CartItem cartItem : cartItems) {
+      total += cartItem.getTotalPrice();
+    }
+    return total;
   }
 }

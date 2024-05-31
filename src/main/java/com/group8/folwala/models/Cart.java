@@ -37,10 +37,6 @@ public class Cart implements Serializable {
     cartItems.add(cartItem);
   }
 
-  public void removeCartItem(int productId) {
-    cartItems.removeIf(item -> item.getProduct().getProductID() == productId);
-  }
-
   public double getTotalPrice() {
     double totalPrice = 0;
     for (CartItem item : cartItems) {

@@ -17,7 +17,6 @@ public class UserService {
     currentUser = loadSession();
   }
 
-  // Registers a new user with the given details and creates a cart for them
   public boolean registerUser(String name, String phone, String password, String address, boolean isAdmin) {
     if (getUserByPhone(phone) != null) {
       return false; // User with this phone number already exists

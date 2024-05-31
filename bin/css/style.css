@@ -214,6 +214,52 @@
 	-fx-padding: 7 10;
 }
 
+/* Orders */
+.order-box {
+	-fx-background-color: -fx-background-light-color;
+	-fx-background-radius: 10;
+	-fx-padding: 25;
+	-fx-effect: dropshadow(three-pass-box, -fx-shadow-color, 30, 0, 3, 2);
+}
+
+.order-box .label {
+	-fx-text-fill: -fx-green-color;
+	-fx-font-size: 16;
+}
+
+.order-box .highlight {
+	-fx-text-fill: -fx-green-color;
+	-fx-font-size: 18;
+	-fx-font-weight: bold;
+}
+
+.order-box .bold {
+	-fx-font-weight: bold;
+}
+
+.order-box .lowlight {
+	-fx-text-fill: -fx-text-light-color;
+	-fx-font-size: 14;
+}
+
+.order-box .processing {
+	-fx-text-fill: -fx-green-color;
+	-fx-background-color: -fx-yellow-color;
+	-fx-background-radius: 100;
+	-fx-padding: 5 10;
+	-fx-font-size: 16;
+	-fx-font-weight: bold;
+}
+
+.order-box .delivered {
+	-fx-text-fill: -fx-yellow-color;
+	-fx-background-color: -fx-green-color;
+	-fx-background-radius: 100;
+	-fx-padding: 5 10;
+	-fx-font-size: 16;
+	-fx-font-weight: bold;
+}
+
 /* Authentication */
 .auth-bg {
 	-fx-background-color: -fx-green-color;
@@ -371,7 +417,8 @@
 /* Panes */
 #productFlowPane,
 #inventoryFlowPane,
-#cartFlowPane {
+#cartFlowPane,
+#orderFlowPane {
 	-fx-padding: 25;
 }
 
