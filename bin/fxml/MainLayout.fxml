@@ -80,7 +80,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </HBox>
-                        <Button mnemonicParsing="false" styleClass="menu-btn" text="Order History">
+                        <Button mnemonicParsing="false" onAction="#visitOrderHistoryScene" styleClass="menu-btn" text="Order History">
                            <graphic>
                               <FontAwesomeIcon glyphName="HISTORY" size="32" />
                            </graphic>

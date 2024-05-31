@@ -147,6 +147,11 @@
 	-fx-padding: 1 9;
 }
 
+.empty-cart {
+	-fx-text-fill: -fx-text-light-color;
+	-fx-font-size: 16;
+}
+
 .cartitem-box {
 	-fx-background-color: transparent;
 	-fx-background-radius: 10;

@@ -1,6 +1,9 @@
 package com.group8.folwala.services;
 
+import com.group8.folwala.models.CartItem;
 import com.group8.folwala.models.Order;
+import com.group8.folwala.models.OrderItem;
+import com.group8.folwala.models.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -32,10 +35,14 @@ public class OrderService {
     }
   }
 
-  public static void addOrder(Order order) {
+  public static void placeOrder(User user, ArrayList<OrderItem> orderItems, String paymentMethod,
+      String shippingAddress) {
+    Order order = new Order(generateOrderID(), user, orderItems, paymentMethod, shippingAddress);
     ArrayList<Order> orders = loadOrders();
     orders.add(order);
     saveOrders(orders);
+
+    CartService.clearCart(user.getPhone());
   }
 
   public static void createFiles() {
@@ -48,7 +55,7 @@ public class OrderService {
 
   public static ArrayList<Order> getOrders(String userPhone) {
     ArrayList<Order> orders = loadOrders();
-    orders.removeIf(order -> !order.getUserPhone().equals(userPhone));
+    orders.removeIf(order -> !order.getUser().getPhone().equals(userPhone));
     return orders;
   }
 
@@ -84,4 +91,7 @@ public class OrderService {
     return getOrdersCount() - getDeliveredOrdersCount();
   }
 
+  private static int generateOrderID() {
+    return getOrdersCount() > 0 ? loadOrders().get(loadOrders().size() - 1).getOrderID() + 1 : 1;
+  }
 }

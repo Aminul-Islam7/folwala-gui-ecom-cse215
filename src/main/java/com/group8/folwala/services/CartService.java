@@ -2,6 +2,7 @@ package com.group8.folwala.services;
 
 import com.group8.folwala.models.Cart;
 import com.group8.folwala.models.CartItem;
+import com.group8.folwala.models.OrderItem;
 import com.group8.folwala.models.Product;
 
 import java.io.*;
@@ -80,5 +81,13 @@ public class CartService {
       total += cartItem.getTotalPrice();
     }
     return total;
+  }
+
+  public static ArrayList<OrderItem> convertToOrderItems(ArrayList<CartItem> cartItems) {
+    ArrayList<OrderItem> orderItems = new ArrayList<>();
+    for (CartItem cartItem : cartItems) {
+      orderItems.add(new OrderItem(cartItem.getProduct(), cartItem.getQuantity()));
+    }
+    return orderItems;
   }
 }

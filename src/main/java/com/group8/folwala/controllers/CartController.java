@@ -5,14 +5,17 @@ import java.util.ArrayList;
 
 import com.group8.folwala.models.Cart;
 import com.group8.folwala.models.CartItem;
+import com.group8.folwala.models.OrderItem;
 import com.group8.folwala.models.User;
 import com.group8.folwala.services.CartService;
+import com.group8.folwala.services.OrderService;
 import com.group8.folwala.services.UserService;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -33,6 +36,9 @@ public class CartController {
   @FXML
   private Button placeOrderButton;
 
+  @FXML
+  private RadioButton CODRadioButton, cardRadioButton;
+
   private ArrayList<CartItem> cartItems;
 
   private UserService userService;
@@ -49,6 +55,7 @@ public class CartController {
     cartItems = CartService.getCartItems(userService.getCurrentUser().getPhone());
     loadCartItems();
     updateOrderSummary();
+    handleEmptyCart();
   }
 
   public void loadCartItems() {
@@ -125,6 +132,7 @@ public class CartController {
       Cart cart = new Cart(userService.getCurrentUser().getPhone(), cartItems);
       CartService.saveCart(cart);
       loadCartItems();
+      handleEmptyCart();
       updateOrderSummary();
       mainLayoutController.updateCartItemCount();
     });
@@ -162,4 +170,31 @@ public class CartController {
     addressTextArea.setText(userService.getCurrentUser().getAddress());
   }
 
+  private void handleEmptyCart() {
+    if (cartItems.size() < 1) {
+      placeOrderButton.setDisable(true);
+      Label emptyCartLabel = new Label("There are no items in your cart.");
+      emptyCartLabel.getStyleClass().add("empty-cart");
+      cartFlowPane.getChildren().add(emptyCartLabel);
+    }
+  }
+
+  @FXML
+  public void handlePlaceOrder() {
+    User user = userService.getCurrentUser();
+
+    String paymentMethod = "COD";
+    if (cardRadioButton.isSelected())
+      paymentMethod = "Card";
+
+    ArrayList<OrderItem> orderItems = CartService.convertToOrderItems(cartItems);
+    OrderService.placeOrder(user, orderItems, paymentMethod, addressTextArea.getText());
+
+    if (paymentMethod.equals("Card")) {
+      SceneController.setScene("Payment.fxml", "Payment");
+    } else {
+      mainLayoutController.updateCartItemCount();
+      SceneController.setScene("OrderHistory.fxml", "Order History");
+    }
+  }
 }

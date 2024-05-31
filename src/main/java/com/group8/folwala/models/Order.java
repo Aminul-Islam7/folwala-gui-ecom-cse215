@@ -13,14 +13,18 @@ public class Order implements Serializable {
   private boolean isDelivered;
   private String paymentMethod;
   private String orderDate;
+  private String shippingAddress;
 
-  public Order(int orderID, User user, ArrayList<OrderItem> orderItems, String paymentMethod) {
+  public Order(int orderID, User user, ArrayList<OrderItem> orderItems, String paymentMethod, String shippingAddress) {
     this.orderID = orderID;
     this.user = user;
     this.orderItems = orderItems;
     this.isDelivered = false;
     this.paymentMethod = paymentMethod;
-    this.orderDate = new SimpleDateFormat("d MMM yyyy at h:mm a").format(new Date());
+    Date date = new Date();
+    this.orderDate = new SimpleDateFormat("d MMM yyyy").format(date)
+        + " at " + new SimpleDateFormat("h:mm a").format(date);
+    this.shippingAddress = shippingAddress;
   }
 
   public int getOrderID() {
@@ -41,6 +45,10 @@ public class Order implements Serializable {
 
   public String getOrderDate() {
     return orderDate;
+  }
+
+  public String getShippingAddress() {
+    return shippingAddress;
   }
 
   public void addOrderItem(OrderItem orderItem) {
@@ -75,11 +83,13 @@ public class Order implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("Order for " + userPhone + ":\n");
-    for (OrderItem item : orderItems) {
-      sb.append(item.toString()).append("\n");
-    }
-    sb.append("Total Price: ").append(getTotalPrice());
-    return sb.toString();
+    return "Order{" +
+        "orderID=" + orderID +
+        ", user=" + user +
+        ", orderItems=" + orderItems +
+        ", isDelivered=" + isDelivered +
+        ", paymentMethod='" + paymentMethod + '\'' +
+        ", orderDate='" + orderDate + '\'' +
+        '}';
   }
 }

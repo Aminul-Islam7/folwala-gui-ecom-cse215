@@ -37,6 +37,7 @@ public class MainLayoutController {
     AuthenticationController.setMainLayoutController(this);
     ProductListController.setMainLayoutController(this);
     CartController.setMainLayoutController(this);
+    PaymentController.setMainLayoutController(this);
 
     updateCartItemCount();
 
@@ -159,6 +160,11 @@ public class MainLayoutController {
   @FXML
   public void visitInventoryScene() {
     SceneController.setScene("Inventory.fxml", "Inventory");
+  }
+
+  @FXML
+  public void visitOrderHistoryScene() {
+    SceneController.setScene("OrderHistory.fxml", "Order History");
   }
 
 }

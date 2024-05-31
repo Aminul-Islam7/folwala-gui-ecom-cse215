@@ -90,12 +90,12 @@
             </Label>
             <VBox prefHeight="55.0" prefWidth="202.0" spacing="5.0">
                <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="Cash on Delivery">
+                  <RadioButton fx:id="CODRadioBUtton" mnemonicParsing="false" selected="true" text="Cash on Delivery">
                      <toggleGroup>
                         <ToggleGroup fx:id="paymentMethod" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Credit / Debit Card" toggleGroup="$paymentMethod" />
+                  <RadioButton fx:id="cardRadioButton" mnemonicParsing="false" text="Credit / Debit Card" toggleGroup="$paymentMethod" />
                </children>
             </VBox>
             <Label fx:id="totalPriceLabel21" styleClass="heading" text="Shipping Address">
@@ -104,7 +104,7 @@
                </VBox.margin>
             </Label>
             <TextArea fx:id="addressTextArea" prefHeight="60.0" prefWidth="220.0" promptText="Enter delivery address" />
-            <Button fx:id="placeOrderButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="220.0" styleClass="action-btn" text="Place Order">
+            <Button fx:id="placeOrderButton" mnemonicParsing="false" onAction="#handlePlaceOrder" prefHeight="39.0" prefWidth="220.0" styleClass="action-btn" text="Place Order">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
