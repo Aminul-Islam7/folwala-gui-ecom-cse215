@@ -167,4 +167,9 @@ public class MainLayoutController {
     SceneController.setScene("OrderHistory.fxml", "Order History");
   }
 
+  @FXML
+  public void visitOrdersScene() {
+    SceneController.setScene("Orders.fxml", "Orders");
+  }
+
 }

@@ -53,14 +53,14 @@ public class OrderService {
     }
   }
 
+  public static ArrayList<Order> getOrders() {
+    return loadOrders();
+  }
+
   public static ArrayList<Order> getOrders(String userPhone) {
     ArrayList<Order> orders = loadOrders();
     orders.removeIf(order -> !order.getUser().getPhone().equals(userPhone));
     return orders;
-  }
-
-  public static ArrayList<Order> getOrders() {
-    return loadOrders();
   }
 
   public static double getOrdersTotalPrice() {

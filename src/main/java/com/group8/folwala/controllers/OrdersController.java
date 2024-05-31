@@ -5,29 +5,25 @@ import java.util.Collections;
 
 import com.group8.folwala.models.Order;
 import com.group8.folwala.models.OrderItem;
-import com.group8.folwala.services.CartService;
 import com.group8.folwala.services.OrderService;
 import com.group8.folwala.services.UserService;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OrderHistoryController {
+public class OrdersController {
 
   @FXML
   private FlowPane orderFlowPane;
 
   private ArrayList<Order> orders;
-  private UserService userService;
 
   @FXML
   public void initialize() {
-    userService = new UserService();
-    orders = OrderService.getOrders(userService.getCurrentUser().getPhone());
+    orders = OrderService.getOrders();
     Collections.reverse(orders);
     loadOrders();
 
@@ -102,6 +98,14 @@ public class OrderHistoryController {
 
     Label orderStatusLabel = new Label(order.isDelivered() ? "Delivered" : "Processing");
     orderStatusLabel.getStyleClass().add(order.isDelivered() ? "delivered" : "processing");
+
+    orderStatusLabel.cursorProperty().set(javafx.scene.Cursor.HAND);
+
+    orderStatusLabel.onMouseClickedProperty().set(event -> {
+      order.setDelivered(!order.isDelivered());
+      OrderService.saveOrders(orders);
+      loadOrders();
+    });
 
     VBox orderSummaryBox = new VBox(5);
 
