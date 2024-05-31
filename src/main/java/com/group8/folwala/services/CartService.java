@@ -66,25 +66,7 @@ public class CartService {
     }
   }
 
-  public static ArrayList<CartItem> getCartItems() {
-    ArrayList<CartItem> cartItems = new ArrayList<>();
-    File dir = new File(CART_FILE_PATH);
-    if (dir.exists()) {
-      for (File file : dir.listFiles()) {
-        if (!file.getName().endsWith(".cart")) {
-          continue;
-        }
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-          Cart cart = (Cart) ois.readObject();
-          for (CartItem item : cart.getCartItems()) {
-            cartItems.add(item);
-          }
-        } catch (IOException | ClassNotFoundException e) {
-          System.out.println("Failed to get cart items from file: " + file.getName() + " - " + e.getMessage());
-          e.printStackTrace();
-        }
-      }
-    }
-    return cartItems;
+  public static ArrayList<CartItem> getCartItems(String userPhone) {
+    return loadCart(userPhone).getCartItems();
   }
 }

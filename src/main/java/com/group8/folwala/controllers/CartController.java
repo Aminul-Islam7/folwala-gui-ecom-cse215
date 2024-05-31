@@ -46,7 +46,7 @@ public class CartController {
   @FXML
   public void initialize() {
     userService = new UserService();
-    cartItems = CartService.getCartItems();
+    cartItems = CartService.getCartItems(userService.getCurrentUser().getPhone());
     loadCartItems();
     updateOrderSummary();
   }
@@ -121,12 +121,12 @@ public class CartController {
         quantityLabel.setText(String.valueOf(cartItem.getQuantity()));
       } else {
         cartItems.remove(cartItem);
-        mainLayoutController.updateCartItemCount();
       }
       Cart cart = new Cart(userService.getCurrentUser().getPhone(), cartItems);
       CartService.saveCart(cart);
       loadCartItems();
       updateOrderSummary();
+      mainLayoutController.updateCartItemCount();
     });
 
     addButton.setOnAction(e -> {

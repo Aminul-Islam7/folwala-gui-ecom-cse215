@@ -7,14 +7,14 @@ import java.util.List;
 public class Cart implements Serializable {
 
   private String userPhone;
-  private List<CartItem> cartItems;
+  private ArrayList<CartItem> cartItems;
 
   public Cart(String userPhone) {
     this.userPhone = userPhone;
     this.cartItems = new ArrayList<>();
   }
 
-  public Cart(String userPhone, List<CartItem> cartItems) {
+  public Cart(String userPhone, ArrayList<CartItem> cartItems) {
     this.userPhone = userPhone;
     this.cartItems = cartItems;
   }
@@ -23,7 +23,7 @@ public class Cart implements Serializable {
     return userPhone;
   }
 
-  public List<CartItem> getCartItems() {
+  public ArrayList<CartItem> getCartItems() {
     return cartItems;
   }
 
