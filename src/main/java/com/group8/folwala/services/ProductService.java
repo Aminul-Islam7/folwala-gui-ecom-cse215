@@ -1,5 +1,6 @@
 package com.group8.folwala.services;
 
+import com.group8.folwala.controllers.AlertController;
 import com.group8.folwala.models.Product;
 
 import java.io.*;
@@ -78,16 +79,25 @@ public class ProductService {
     }
   }
 
+  // Export products to CSV file on user's downloads directory
   public static void exportProducts() {
     ArrayList<Product> products = getAllProducts();
-    try (PrintWriter writer = new PrintWriter(new FileWriter("products.csv"))) {
+    String csvFile = System.getProperty("user.home") + "\\Downloads\\products.csv";
+    try (PrintWriter writer = new PrintWriter(new File(csvFile))) {
+      StringBuilder sb = new StringBuilder();
       for (Product product : products) {
-        writer.println(product.getProductID() + "," + product.getName() + "," + product.getUnit() + ","
-            + product.getPrice() + "," + product.getCategory() + "," + product.getImage());
+        sb.append(product.getName()).append(",");
+        sb.append(product.getUnit()).append(",");
+        sb.append(product.getPrice()).append(",");
+        sb.append(product.getCategory()).append(",");
+        sb.append(product.getImage()).append("\n");
       }
-    } catch (IOException e) {
+      writer.write(sb.toString());
+      AlertController.showInformation("Export Successful", "Products exported to " + csvFile);
+    } catch (FileNotFoundException e) {
       System.out.println("Failed to export products: " + e.getMessage());
     }
+
   }
 
   public static void updateProduct(Product product) {
