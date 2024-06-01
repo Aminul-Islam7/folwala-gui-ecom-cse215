@@ -82,6 +82,8 @@ public class MainLayoutController {
 
   public void updateCartItemCount() {
     UserService userService = new UserService();
+    if (userService.getCurrentUser() == null)
+      return;
     cartSize = CartService.getCartItems(userService.getCurrentUser().getPhone()).size();
     if (cartSize > 0) {
       cartItemCountLabel.setText(String.valueOf(cartSize));
