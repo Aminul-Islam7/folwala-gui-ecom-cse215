@@ -3,7 +3,7 @@
 <p align="center">
   <img style="margin-left:-25px" src="src/main/resources/images/logo.png" width="200" alt="Folwala Logo">
   <br>
-  <img src="src/main/resources/images/Folwala_text.png" alt="Folwala Text">
+  <img src="src/main/resources/images/folwala_text.png" alt="Folwala Text">
 </p>
 
 ## Project Overview
