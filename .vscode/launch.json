@@ -6,6 +6,13 @@
 			"name": "Main",
 			"request": "launch",
 			"mainClass": "com.group8.folwala.Main",
+			"projectName": "folwala-gui-ecom-cse215_7cb5e540"
+		},
+		{
+			"type": "java",
+			"name": "Main",
+			"request": "launch",
+			"mainClass": "com.group8.folwala.Main",
 			"projectName": "folwala-gui-ecom-cse215_9f8ae5e2"
 		},
 		{
