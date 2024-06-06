@@ -93,12 +93,12 @@ public class AuthenticationController {
 
   @FXML
   private void switchToRegisterScene(ActionEvent event) {
-    SceneController.switchToScene("register.fxml");
+    SceneController.switchToScene("Register.fxml");
   }
 
   @FXML
   private void switchToLoginScene(ActionEvent event) {
-    SceneController.switchToScene("login.fxml");
+    SceneController.switchToScene("Login.fxml");
   }
 
   @FXML
