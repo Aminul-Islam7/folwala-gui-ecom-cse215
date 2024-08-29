@@ -1,11 +1,8 @@
 package com.group8.folwala.controllers;
 
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 
 public class AlertController {
-
-  private Image icon = new Image(SceneController.class.getResource("/images/logo.png").toExternalForm());
 
   public static void showAlert(String title, String message) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);

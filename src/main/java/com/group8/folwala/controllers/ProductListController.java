@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 
 import com.group8.folwala.models.Product;

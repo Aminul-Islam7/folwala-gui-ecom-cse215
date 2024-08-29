@@ -1,9 +1,7 @@
 package com.group8.folwala.controllers;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import com.group8.folwala.models.Product;
 import com.group8.folwala.services.ProductService;
@@ -17,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class InventoryController {
 

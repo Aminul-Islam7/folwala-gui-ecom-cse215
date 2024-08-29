@@ -1,7 +1,6 @@
 package com.group8.folwala.controllers;
 
 import java.io.File;
-import java.net.URL;
 import java.nio.file.Files;
 
 import com.group8.folwala.models.Product;
