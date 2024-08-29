@@ -23,140 +23,142 @@ import javafx.stage.Stage;
 
 public class EditProductController {
 
-  @FXML
-  private ChoiceBox<String> categoryChoiceBox;
+    @FXML
+    private ChoiceBox<String> categoryChoiceBox;
 
-  @FXML
-  private Label errorLabel;
+    @FXML
+    private Label errorLabel;
 
-  @FXML
-  private TextField nameField, priceField, unitField;
+    @FXML
+    private TextField nameField, priceField, unitField;
 
-  @FXML
-  private ImageView productImageView;
+    @FXML
+    private ImageView productImageView;
 
-  @FXML
-  private Button changeImageButton;
+    @FXML
+    private Button changeImageButton;
 
-  private File selectedImageFile, destFile;
+    private File selectedImageFile, destFile;
 
-  private Product product;
+    private Product product;
 
-  private static InventoryController inventoryController;
+    private static InventoryController inventoryController;
 
-  private static final String[] categories = { "Fleshy Fruits", "Dry Fruits", "Fruit Seeds", "Fruit Juice",
-      "Vegetables" };
+    private static final String[] categories = { "Fleshy Fruits", "Dry Fruits", "Fruit Seeds", "Fruit Juice",
+            "Vegetables" };
+    private final String PRODUCT_IMAGES_PATH = System.getenv("APPDATA") + "\\Folwala\\products\\";
 
-  @FXML
-  public void initialize() {
-    InventoryController.setProductController(this);
-    categoryChoiceBox.getItems().addAll(categories);
-  }
-
-  public static void setInventoryController(InventoryController inventoryController) {
-    EditProductController.inventoryController = inventoryController;
-  }
-
-  @FXML
-  private void handleUploadImage() {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().add(
-        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-    Stage stage = (Stage) changeImageButton.getScene().getWindow();
-    selectedImageFile = fileChooser.showOpenDialog(stage);
-
-    if (selectedImageFile != null) {
-      changeImageButton.setText(selectedImageFile.getName());
-
-      File destDir = new File("src/main/resources/images/products");
-      if (!destDir.exists()) {
-        destDir.mkdirs();
-      }
-
-      destFile = new File(destDir, selectedImageFile.getName());
-      int counter = 1;
-      String originalName = destFile.getName();
-      while (destFile.exists()) {
-        String newName = originalName.substring(0, originalName.lastIndexOf('.'))
-            + "_" + counter
-            + originalName.substring(originalName.lastIndexOf('.'));
-        destFile = new File(destDir, newName);
-        counter++;
-      }
-
-      Image image = new Image(selectedImageFile.toURI().toString());
-      productImageView.setImage(image);
+    @FXML
+    public void initialize() {
+        InventoryController.setProductController(this);
+        categoryChoiceBox.getItems().addAll(categories);
     }
 
-    Task<Void> copyTask = new Task<Void>() {
-      @Override
-      protected Void call() throws Exception {
-        Files.copy(selectedImageFile.toPath(), destFile.toPath());
-        return null;
-      }
-    };
-    copyTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-      @Override
-      public void handle(WorkerStateEvent event) {
-        productImageView.setImage(new Image(destFile.toURI().toString()));
-      }
-    });
-
-    new Thread(copyTask).start();
-  }
-
-  public void setProduct(Product product) {
-    this.product = product;
-    categoryChoiceBox.setValue(product.getCategory());
-    nameField.setText(product.getName());
-    nameField.setPromptText(product.getName());
-    priceField.setText(String.valueOf(product.getPrice()));
-    priceField.setPromptText(String.valueOf(product.getPrice()));
-    unitField.setText(product.getUnit());
-    unitField.setPromptText(product.getUnit());
-
-    URL imageURL = getClass().getResource("/images/products/" + product.getImage());
-
-    if (imageURL == null)
-      imageURL = getClass().getResource("/images/logo.png");
-
-    productImageView.setImage(new ImageView(imageURL.toString()).getImage());
-  }
-
-  @FXML
-  public void handleSaveProduct(ActionEvent event) {
-    String name = nameField.getText();
-    String price = priceField.getText();
-    String unit = unitField.getText();
-    String category = categoryChoiceBox.getValue();
-
-    if (name.isEmpty() || price.isEmpty() || unit.isEmpty() || category == null) {
-      errorLabel.setText("Please fill in all fields");
-      return;
+    public static void setInventoryController(InventoryController inventoryController) {
+        EditProductController.inventoryController = inventoryController;
     }
 
-    try {
-      Double.parseDouble(price);
-    } catch (NumberFormatException e) {
-      errorLabel.setText("Price must be a number");
-      return;
+    @FXML
+    private void handleUploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        Stage stage = (Stage) changeImageButton.getScene().getWindow();
+        selectedImageFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedImageFile != null) {
+            changeImageButton.setText(selectedImageFile.getName());
+
+            File destDir = new File(PRODUCT_IMAGES_PATH);
+            if (!destDir.exists()) {
+                destDir.mkdirs();
+            }
+
+            destFile = new File(destDir, selectedImageFile.getName());
+            int counter = 1;
+            String originalName = destFile.getName();
+            while (destFile.exists()) {
+                String newName = originalName.substring(0, originalName.lastIndexOf('.'))
+                        + "_" + counter
+                        + originalName.substring(originalName.lastIndexOf('.'));
+                destFile = new File(destDir, newName);
+                counter++;
+            }
+
+            Image image = new Image(selectedImageFile.toURI().toString());
+            productImageView.setImage(image);
+        }
+
+        Task<Void> copyTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Files.copy(selectedImageFile.toPath(), destFile.toPath());
+                return null;
+            }
+        };
+        copyTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                productImageView.setImage(new Image(destFile.toURI().toString()));
+            }
+        });
+
+        new Thread(copyTask).start();
     }
 
-    String image = product.getImage();
-    if (selectedImageFile != null) {
-      image = destFile.getName();
+    public void setProduct(Product product) {
+        this.product = product;
+        categoryChoiceBox.setValue(product.getCategory());
+        nameField.setText(product.getName());
+        nameField.setPromptText(product.getName());
+        priceField.setText(String.valueOf(product.getPrice()));
+        priceField.setPromptText(String.valueOf(product.getPrice()));
+        unitField.setText(product.getUnit());
+        unitField.setPromptText(product.getUnit());
+
+        File imageFile = new File(PRODUCT_IMAGES_PATH + product.getImage());
+        String imageURL = imageFile.toURI().toString();
+
+        if (!imageFile.exists())
+            imageURL = getClass().getResource("/images/logo.png").toString();
+
+        productImageView.setImage(new ImageView(imageURL).getImage());
     }
 
-    product = new Product(product.getProductID(), name, unit, Double.parseDouble(price), category,
-        image);
-    ProductService.updateProduct(product);
-    inventoryController.refreshProducts();
-    SceneController.closeSecondaryStage();
-  }
+    @FXML
+    public void handleSaveProduct(ActionEvent event) {
+        String name = nameField.getText();
+        String price = priceField.getText();
+        String unit = unitField.getText();
+        String category = categoryChoiceBox.getValue();
 
-  @FXML
-  public void handleCancel(ActionEvent event) {
-    SceneController.closeSecondaryStage();
-  }
+        if (name.isEmpty() || price.isEmpty() || unit.isEmpty() || category == null) {
+            errorLabel.setText("Please fill in all fields");
+            return;
+        }
+
+        try {
+            Double.parseDouble(price);
+        } catch (NumberFormatException e) {
+            errorLabel.setText("Price must be a number");
+            return;
+        }
+
+        String image = product.getImage();
+        if (selectedImageFile != null) {
+            image = destFile.getName();
+        }
+
+        product = new Product(product.getProductID(), name, unit, Double.parseDouble(price), category,
+                image);
+        ProductService.updateProduct(product);
+        inventoryController.refreshProducts();
+        SceneController.closeSecondaryStage();
+    }
+
+    @FXML
+    public void handleCancel(ActionEvent event) {
+        SceneController.closeSecondaryStage();
+    }
 
 }

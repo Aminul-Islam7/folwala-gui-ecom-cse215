@@ -1,4 +1,4 @@
-# Folwala
+# Project Folwala
 
 <p align="center">
   <img style="margin-left:-25px" src="src/main/resources/images/logo.png" width="200" alt="Folwala Logo">
@@ -6,9 +6,9 @@
   <img src="src/main/resources/images/folwala_text.png" alt="Folwala Text">
 </p>
 
-## Project Overview
-
-Folwala is an online shopping platform designed to provide a seamless shopping experience for fruits and vegetables. The platform connects users with a variety of fresh produce, eliminating the hassle of traditional shopping methods. This README file provides an overview of the project, its structure, installation instructions, and usage guidelines.
+<p align="center">
+    Folwala is an online shopping platform designed to provide a seamless shopping experience for fruits and vegetables. The platform connects users with a variety of fresh produce, eliminating the hassle of traditional shopping methods. This README file provides an overview of the project, its structure, installation instructions, and usage guidelines.
+</p>
 
 ## Team Members
 
@@ -148,27 +148,27 @@ When running the Folwala application locally, you can use the following default 
 
 ### Home Page
 
-![Home Page](screenshots/homepage.png)
+![Home Page](assets/homepage.png)
 
 ### Cart
 
-![Cart](screenshots/cart.png)
+![Cart](assets/cart.png)
 
 ### Order History
 
-![Order History](screenshots/order_history.png)
+![Order History](assets/order_history.png)
 
 ### Admin - Inventory
 
-![Admin - Inventory](screenshots/admin_inventory.png)
+![Admin - Inventory](assets/admin_inventory.png)
 
 ### Admin - Adding Products
 
-![Admin - Adding Products](screenshots/admin_add_product.png)
+![Admin - Adding Products](assets/admin_add_product.png)
 
 ### Admin - Editing Products
 
-![Admin - Editing Products](screenshots/admin_edit_product.png)
+![Admin - Editing Products](assets/admin_edit_product.png)
 
 ## Conclusion
 
